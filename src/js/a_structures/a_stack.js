@@ -47,74 +47,74 @@ What's the time complexity?
  */
 
 function Stack(capacity) {
-  this.capacity = capacity
-  this.data = {}
-  this.lastIndex = -1
+  this.capacity = capacity;
+  this.data = {};
+  this.lastIndex = -1;
 }
 
-Stack.prototype.push = function (value) {
+Stack.prototype.push = function(value) {
   if (this.count() < this.capacity) {
-    this.lastIndex += 1
-    this.data[this.lastIndex] = value
-    return this.lastIndex
+    this.lastIndex += 1;
+    this.data[this.lastIndex] = value;
+    return this.lastIndex;
   }
-  return 'Max capacity already reached. Remove element before adding a new one.'
-}
+  return 'Max capacity already reached. Remove element before adding a new one.';
+};
 // Time complexity:
 
-Stack.prototype.pop = function () {
+Stack.prototype.pop = function() {
   if (this.count() > 0) {
-    const i = this.lastIndex
-    const val = this.data[i]
-    this.lastIndex -= 1
-    delete this.data[i]
-    return val
+    const i = this.lastIndex;
+    const val = this.data[i];
+    this.lastIndex -= 1;
+    delete this.data[i];
+    return val;
   }
-  return null
-}
+  return null;
+};
 // Time complexity:
 
-Stack.prototype.peek = function () {
+Stack.prototype.peek = function() {
   if (this.count() > 0) {
-    return this.data[this.lastIndex]
+    return this.data[this.lastIndex];
   }
-  return null
-}
+  return null;
+};
 // Time complexity:
 
-Stack.prototype.count = function () {
-  return this.lastIndex + 1
-}
+Stack.prototype.count = function() {
+  return this.lastIndex + 1;
+};
 // Time complexity:
 
-Stack.prototype.contains = function (val) {
+Stack.prototype.contains = function(val) {
   for (let prop in this.data) {
     if (this.data[prop] === val) {
-      return true
+      return true;
     }
   }
-  return false
-}
+  return false;
+};
 // Time complexity:
 
-Stack.prototype.until = function (val) {
+Stack.prototype.until = function(val) {
   for (let i = this.lastIndex; i >= 0; i--) {
     if (this.data[i] === val) {
-      return this.lastIndex - i
+      return this.lastIndex - i;
     }
   }
-  return -1
-}
+  return -1;
+};
 
-Stack.prototype.min = function () {
-  let min = 0
+Stack.prototype.min = function() {
+  let min = 0;
   for (let i = 0; i <= this.lastIndex; i++) {
     if (this.data[i] < this.data[min]) {
-      min = i
+      min = i;
     }
   }
-  return this.data[min]
-}
+  return this.data[min];
+};
 
 /*
 *** Exercises:
