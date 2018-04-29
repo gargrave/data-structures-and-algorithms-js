@@ -1,6 +1,7 @@
 /*
-
-STACK
+====================================
+= STACK
+====================================
 
 - Abstract data type
 - LIFO - Last in, first out
@@ -11,7 +12,9 @@ DO NOT use an array and the native push/pop method in your implementation. That'
 Use an object as the underlying data structure.
 
 
-*** Operations:
+====================================
+= Operations
+====================================
 
 myStack.push(value)
   => count of stack
@@ -28,8 +31,9 @@ myStack.peek()
 myStack.count()
    of elements in stack
 
-   
-*** Additional Exercises:
+====================================
+= Additional Exercises
+====================================
 
 Modify your stack to take a max capacity and return a string if you try to add an element when there's no more room:
   myStack.push(value)
@@ -45,82 +49,10 @@ Create an 'until' method to get the number of pops until you get to a certain va
   myStack.until(7)
   => 4
   What's the time complexity?
-*/
 
-function Stack(capacity) {
-  this.capacity = Math.max(capacity, 2);
-  this.data = {};
-  this.lastIndex = -1;
-}
-
-Stack.prototype.push = function(value) {
-  if (this.count() < this.capacity) {
-    this.lastIndex += 1;
-    this.data[this.lastIndex] = value;
-    return this.lastIndex;
-  }
-  return 'Max capacity already reached. Remove element before adding a new one.';
-};
-// Time complexity:
-
-Stack.prototype.pop = function() {
-  if (this.count() > 0) {
-    const i = this.lastIndex;
-    const val = this.data[i];
-    this.lastIndex -= 1;
-    delete this.data[i];
-    return val;
-  }
-  return null;
-};
-// Time complexity:
-
-Stack.prototype.peek = function() {
-  if (this.count() > 0) {
-    return this.data[this.lastIndex];
-  }
-  return null;
-};
-// Time complexity:
-
-Stack.prototype.count = function() {
-  return this.lastIndex + 1;
-};
-// Time complexity:
-
-Stack.prototype.contains = function(val) {
-  for (let prop in this.data) {
-    if (this.data[prop] === val) {
-      return true;
-    }
-  }
-  return false;
-};
-// Time complexity:
-
-Stack.prototype.until = function(val) {
-  for (let i = this.lastIndex; i >= 0; i--) {
-    if (this.data[i] === val) {
-      return this.lastIndex - i;
-    }
-  }
-  return -1;
-};
-
-Stack.prototype.min = function() {
-  let minIndex = 0;
-  for (let i = 0; i <= this.lastIndex; i++) {
-    if (this.data[i] < this.data[minIndex]) {
-      minIndex = i;
-    }
-  }
-  return this.data[minIndex] || 0;
-};
-
-module.exports = Stack;
-
-/*
-*** Exercises:
+====================================
+= Bonus
+====================================
 
 1. Implement a stack with a min method which returns the minimum
 element currently in the stack. This method should have O(1) time
@@ -142,4 +74,73 @@ You can move the disks according to three constraints:
    3. no disk can be placed on top of a disk that is smaller than it
 The disks begin on tower#1. Write a function that will move the disks
 from tower#1 to tower#3 in such a way that none of the constraints are violated.
- */
+*/
+
+class Stack {
+  constructor(capacity) {
+    this.capacity = Math.max(capacity, 2);
+    this.data = {};
+    this.lastIndex = -1;
+  }
+
+  push(value) {
+    if (this.count() < this.capacity) {
+      this.lastIndex += 1;
+      this.data[this.lastIndex] = value;
+      return this.lastIndex;
+    }
+    return 'Max capacity already reached. Remove element before adding a new one.';
+  }
+
+  pop() {
+    if (this.count() > 0) {
+      const i = this.lastIndex;
+      const val = this.data[i];
+      this.lastIndex -= 1;
+      delete this.data[i];
+      return val;
+    }
+    return null;
+  }
+
+  peek() {
+    if (this.count() > 0) {
+      return this.data[this.lastIndex];
+    }
+    return null;
+  }
+
+  count() {
+    return this.lastIndex + 1;
+  }
+
+  contains(val) {
+    for (let key in this.data) {
+      if (this.data[key] === val) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  until(val) {
+    for (let i = this.lastIndex; i >= 0; i--) {
+      if (this.data[i] === val) {
+        return this.lastIndex - i;
+      }
+    }
+    return -1;
+  }
+
+  min() {
+    let minIndex = 0;
+    Object.keys(this.data).forEach((key, i) => {
+      if (this.data[key] < this.data[minIndex]) {
+        minIndex = i;
+      }
+    });
+    return this.data[minIndex] || 0;
+  }
+}
+
+module.exports = Stack;

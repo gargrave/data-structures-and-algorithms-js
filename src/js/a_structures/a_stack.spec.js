@@ -1,4 +1,4 @@
-const Stack = require('./a_stack');
+ const Stack = require('./a_stack');
 
 describe('Stack', () => {
   const DEFAULT_SIZE = 5;
