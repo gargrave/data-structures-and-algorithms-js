@@ -2,52 +2,53 @@
 
 STACK
 
-Abstract data type
-LIFO - Last in, first out
-Collection of elements with push and pop operations.
-Note that there is a natural order. Elements are removed in the reverse order of their addition.
+- Abstract data type
+- LIFO - Last in, first out
+- Collection of elements with push and pop operations.
+- Note that there is a natural order. Elements are removed in the reverse order of their addition.
 
 DO NOT use an array and the native push/pop method in your implementation. That's too easy, yeah? =P
 Use an object as the underlying data structure.
 
+
 *** Operations:
 
 myStack.push(value)
-=> count of stack
-add value to collection
+  => count of stack
+  add value to collection
 
 myStack.pop()
-=> most recent element added collection
-Remove item so that it is no longer in collection
+  => most recent element added collection
+  Remove item so that it is no longer in collection
 
 myStack.peek()
-=> most recent element added collection
-Similiar to pop, but do not remove element from collection
+  => most recent element added collection
+  Similiar to pop, but do not remove element from collection
 
 myStack.count()
-=> number of elements in stack
+   of elements in stack
 
+   
 *** Additional Exercises:
 
 Modify your stack to take a max capacity and return a string if you try to add an element when there's no more room:
-myStack.push(value)
-=> "Max capacity already reached. Remove element before adding a new one."
+  myStack.push(value)
+  => "Max capacity already reached. Remove element before adding a new one."
 
-Create a contains method to check if a value is in the stack:
-myStack.contains('findme')
-=> true/false
-What's the time complexity?
+Create a 'contains' method to check if a value is in the stack:
+  myStack.contains('findme')
+  => true/false
+  What's the time complexity?
 
-Create an until method to get the number of pops until you get to a certain value:
-stack values - (first)2-5-7-3-6-9(last)
-myStack.until(7)
-=> 4
-What's the time complexity?
-
- */
+Create an 'until' method to get the number of pops until you get to a certain value:
+  stack values - (first)2-5-7-3-6-9(last)
+  myStack.until(7)
+  => 4
+  What's the time complexity?
+*/
 
 function Stack(capacity) {
-  this.capacity = capacity;
+  this.capacity = Math.max(capacity, 2);
   this.data = {};
   this.lastIndex = -1;
 }
@@ -107,14 +108,16 @@ Stack.prototype.until = function(val) {
 };
 
 Stack.prototype.min = function() {
-  let min = 0;
+  let minIndex = 0;
   for (let i = 0; i <= this.lastIndex; i++) {
-    if (this.data[i] < this.data[min]) {
-      min = i;
+    if (this.data[i] < this.data[minIndex]) {
+      minIndex = i;
     }
   }
-  return this.data[min];
+  return this.data[minIndex] || 0;
 };
+
+module.exports = Stack;
 
 /*
 *** Exercises:
