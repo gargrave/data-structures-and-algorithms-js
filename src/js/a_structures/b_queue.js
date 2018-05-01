@@ -60,64 +60,63 @@ Create an 'until' method to get the number of dequeues until you get to a certai
 3. Given a tree, print out the value of each node in breadth-first order using a queue data structure.
 */
 
-function Queue(capacity) {
-  this.capacity = Math.max(capacity, 2);
-  this.data = {};
-  this.firstIndex = 0;
-  this.lastIndex = -1;
-}
-
-Queue.prototype.enqueue = function(value) {
-  if (this.count() < this.capacity) {
-    this.lastIndex += 1;
-    this.data[this.lastIndex] = value;
-    return this.lastIndex;
+class Queue {
+  constructor(capacity) {
+    this.capacity = Math.max(capacity, 2);
+    this.data = {};
+    this.firstIndex = 0;
+    this.lastIndex = -1;
   }
-  return 'Max capacity already reached. Remove element before adding a new one.';
-};
-// Time complexity:
 
-Queue.prototype.dequeue = function() {
-  if (this.count() > 0) {
+  enqueue(value) {
+    if (this.count() < this.capacity) {
+      this.lastIndex += 1;
+      this.data[this.lastIndex] = value;
+      return this.lastIndex;
+    }
+    return 'Max capacity already reached. Remove element before adding a new one.';
+  }
+
+  dequeue() {
+    if (this.count() === 0) {
+      return null;
+    }
+
     const i = this.firstIndex;
     const val = this.data[i];
     this.firstIndex += 1;
     delete this.data[i];
     return val;
   }
-  return null;
-};
-// Time complexity:
 
-Queue.prototype.peek = function() {
-  if (this.count() > 0) {
+  peek() {
+    if (this.count() === 0) {
+      return null;
+    }
     return this.data[this.firstIndex];
   }
-  return null;
-};
 
-Queue.prototype.count = function() {
-  return this.lastIndex - this.firstIndex + 1;
-};
-// Time complexity:
-
-Queue.prototype.contains = function(val) {
-  for (let prop in this.data) {
-    if (this.data[prop] === val) {
-      return true;
-    }
+  count() {
+    return this.lastIndex - this.firstIndex + 1;
   }
-  return false;
-};
-// Time complexity:
 
-Queue.prototype.until = function(val) {
-  for (let i = this.firstIndex; i < this.lastIndex; i++) {
-    if (this.data[i] === val) {
-      return i - this.firstIndex;
+  contains(val) {
+    for (let prop in this.data) {
+      if (this.data[prop] === val) {
+        return true;
+      }
     }
+    return false;
   }
-  return -1;
-};
+
+  until(val) {
+    for (let i = this.firstIndex; i < this.lastIndex; i++) {
+      if (this.data[i] === val) {
+        return i - this.firstIndex;
+      }
+    }
+    return -1;
+  };
+}
 
 module.exports = Queue;
