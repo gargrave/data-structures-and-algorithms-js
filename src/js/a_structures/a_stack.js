@@ -84,30 +84,32 @@ class Stack {
   }
 
   push(value) {
-    if (this.count() < this.capacity) {
-      this.lastIndex += 1;
-      this.data[this.lastIndex] = value;
-      return this.lastIndex;
+    if (this.count() >= this.capacity) {
+      return 'Max capacity already reached. Remove element before adding a new one.';
     }
-    return 'Max capacity already reached. Remove element before adding a new one.';
+    
+    this.lastIndex += 1;
+    this.data[this.lastIndex] = value;
+    return this.lastIndex;
   }
 
   pop() {
-    if (this.count() > 0) {
-      const i = this.lastIndex;
-      const val = this.data[i];
-      this.lastIndex -= 1;
-      delete this.data[i];
-      return val;
+    if (this.count() === 0) {
+      return null;
     }
-    return null;
+
+    const i = this.lastIndex;
+    const val = this.data[i];
+    this.lastIndex -= 1;
+    delete this.data[i];
+    return val;
   }
 
   peek() {
-    if (this.count() > 0) {
-      return this.data[this.lastIndex];
+    if (this.count() === 0) {
+      return null;
     }
-    return null;
+    return this.data[this.lastIndex];
   }
 
   count() {

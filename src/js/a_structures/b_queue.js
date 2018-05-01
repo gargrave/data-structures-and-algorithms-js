@@ -69,12 +69,13 @@ class Queue {
   }
 
   enqueue(value) {
-    if (this.count() < this.capacity) {
-      this.lastIndex += 1;
-      this.data[this.lastIndex] = value;
-      return this.lastIndex;
+    if (this.count() >= this.capacity) {
+      return 'Max capacity already reached. Remove element before adding a new one.';
     }
-    return 'Max capacity already reached. Remove element before adding a new one.';
+
+    this.lastIndex += 1;
+    this.data[this.lastIndex] = value;
+    return this.lastIndex;
   }
 
   dequeue() {
