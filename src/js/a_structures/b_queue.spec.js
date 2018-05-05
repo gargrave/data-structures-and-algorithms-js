@@ -1,4 +1,4 @@
-const Queue = require('./b_queue');
+import Queue from './b_queue';
 
 describe('Queue', () => {
   const DEFAULT_SIZE = 5;

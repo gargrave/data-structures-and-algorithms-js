@@ -60,7 +60,7 @@ Create an 'until' method to get the number of dequeues until you get to a certai
 3. Given a tree, print out the value of each node in breadth-first order using a queue data structure.
 */
 
-class Queue {
+export default class Queue {
   constructor(capacity) {
     this.capacity = Math.max(capacity, 2);
     this.data = {};
@@ -119,5 +119,3 @@ class Queue {
     return -1;
   };
 }
-
-module.exports = Queue;

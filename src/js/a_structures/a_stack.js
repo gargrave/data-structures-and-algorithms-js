@@ -76,7 +76,7 @@ The disks begin on tower#1. Write a function that will move the disks
 from tower#1 to tower#3 in such a way that none of the constraints are violated.
 */
 
-class Stack {
+export default class Stack {
   constructor(capacity) {
     this.capacity = Math.max(capacity, 2);
     this.data = {};
@@ -144,5 +144,3 @@ class Stack {
     return this.data[minIndex] || 0;
   }
 }
-
-module.exports = Stack;
