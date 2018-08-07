@@ -1,7 +1,10 @@
 /*
-SELECTION SORT
+====================================
+= Selection Sort
+====================================
 
-*** Description
+Description
+
 Iterate over array and grow a sorted array behind current element.
 For each position, find the smallest element in unsorted subarray
 starting at that position, and swap elements so that smallest
@@ -15,52 +18,71 @@ swap with element at beggining of unsorted subarray
 sorted portion has now grown:
 [ 1 2 3 4|5 7 9 ]
 
-*** Exercises
+====================================
+= Exercises
+====================================
 
 - Implement selection sort
 - Identify time complexity
 
-Stable Variant
+Stable Variant:
+
 - Implement as a stable sort - rather than swapping, the minimum
-  value is inserted into the first position and all other items are
-  shifted one to the right. How does this impact performance?
+    value is inserted into the first position and all other items are
+    shifted one to the right. How does this impact performance?
+
 - Modify function to take comparator function. specify default if
-  not provided (check out native Array.sort comparator function for reference)
+    not provided (check out native Array.sort comparator function for reference)
 - Use your comparator function to verify that your sort is stable
-  by taking input: [{value: 15}, {value: 10, order: 1}, {value: 10, order: 2}]
+    by taking input: [{value: 15}, {value: 10, order: 1}, {value: 10, order: 2}]
 
 - Implement selection sort for a linked list (you can use your
-  data structure implemention from earlier in the course). How does this impact performance and stability?
+    data structure implemention from earlier in the course). How does this impact performance and stability?
 */
-function swap(arr, a, b) {
-  let temp = arr[a];
-  arr[a] = arr[b];
-  arr[b] = temp;
+
+// Rough results based on Arrays of randomized ints:
+//
+// @ 25 elements: 0.165ms
+// @ 100 elements: 0.245ms
+// @ 1000 elements: 4.289ms
+// @ 10000 elements: 93.561ms
+// @ 50000 elements: 2315.804ms
+
+function swap(arr, idxA, idxB) {
+  const temp = arr[idxA];
+  arr[idxA] = arr[idxB];
+  arr[idxB] = temp;
 }
 
-function compare(a, b) {
-  if (a > b) return 1;
-  if (a < b) return -1;
+function defaultCompartor(a, b) {
+  if (a > b) {
+    return 1;
+  } 
+  if (a < b) {
+    return -1;
+  }
   return 0;
 }
 
-function selectionSort(arr, compFnc) {
-  let comp = compFnc || compare;
-  for (let i = 0; i < arr.length; i++) {
-    // find smallest element
-    let min = i;
-    for (let j = i; j < arr.length; j++) {
-      if (comp(arr[i], arr[j]) > 0) {
-        min = j;
+function selectionSort(arr, comparator) {
+  const len = arr.length;
+  const sorted = arr.concat();
+  const comp = comparator || defaultCompartor;
+  
+  for (let i = 0; i < len; i++) {
+    let minIdx = i;
+    for (let j = i; j < len; j++) {
+      if (comp(sorted[minIdx], sorted[j]) > 0) {
+        minIdx = j;
       }
     }
-    // move to position 'i'
-    if (min !== i) {
-      swap(arr, i, min);
+    
+    if (minIdx !== i) {
+      swap(sorted, minIdx, i);
     }
   }
-  return arr;
+  
+  return sorted;
 }
 
-let test = selectionSort([1, 2, 3, 9, 5, 8, 7, 4]);
-console.log(test);
+export default selectionSort;
