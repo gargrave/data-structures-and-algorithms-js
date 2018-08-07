@@ -67,12 +67,12 @@ function defaultCompartor(a, b) {
 function selectionSort(arr, comparator) {
   const len = arr.length;
   const sorted = arr.concat();
-  const comp = comparator || defaultCompartor;
+  const compare = comparator || defaultCompartor;
   
   for (let i = 0; i < len; i++) {
     let minIdx = i;
     for (let j = i; j < len; j++) {
-      if (comp(sorted[minIdx], sorted[j]) > 0) {
+      if (compare(sorted[minIdx], sorted[j]) > 0) {
         minIdx = j;
       }
     }
