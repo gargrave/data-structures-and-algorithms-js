@@ -1,18 +1,24 @@
 /*
-Bubble Sort
+====================================
+= Bubble Sort
+====================================
 
-*** Description
+Description
 
 Iterate over array, comparing adjacent items and swap if in incorrect
 order. Largest elements bubble to the end of the array
 
-*** Exercises
+====================================
+= Exercises
+====================================
 
 - Implement bubble sort
 - Identify time complexity
 - Identify space complexity
 
-Optimizations:
+====================================
+= Optimizations
+====================================
 
 - Make algorithm adaptive (if at any point array is already sorted,
 exit function early). After doing this, what is time complexity for
@@ -42,30 +48,29 @@ Similar to insertion sort (many properties are the same for insertion
 and bubble sort) - when the data is nearly sorted (since it's adaptive)
 or when the problem size is small (because it has low memory overhead)
 */
-const assert = require('assert');
-
-function swap(arr, a, b) {
-  let temp = arr[a];
-  arr[a] = arr[b];
-  arr[b] = temp;
+function swap(arr, idxA, idxB) {
+  const temp = arr[idxA];
+  arr[idxA] = arr[idxB];
+  arr[idxB] = temp;
 }
 
 function bubbleSort(arr) {
+  const sorted = arr.concat();
+  const len = sorted.length;
+
   // loop from the top down; this will be our 'wall',
   // where we know the values have already been sorted
-  for (let j = arr.length; j >= 0; j--) {
-    for (let i = 0; i < j; i++) {
+  for (let i = len; i >= 0; i--) {
+    for (let j = 0; j < i; j++) {
       // compare each element to the one right of it, and if the right
       // one is larger, swap them
-      if (arr[i] > arr[i + 1]) {
-        swap(arr, i, i + 1);
+      if (sorted[j] > sorted[j + 1]) {
+        swap(sorted, j, j + 1);
       }
     }
   }
-  return arr;
+
+  return sorted;
 }
 
-let input = [3, 9, 1, 2, 6, 4, 8, 4];
-let expected = [1, 2, 3, 4, 4, 6, 8, 9];
-let result = bubbleSort(input);
-assert.deepEqual(result, expected);
+export default bubbleSort;
