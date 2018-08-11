@@ -19,8 +19,8 @@ describe('Tree', () => {
       const treeA = new Tree(1);
       const result = treeA.addChild(2);
 
-      expect(result instanceof Tree).toEqual(true);
-      expect(result.value).toEqual(2);
+      expect(result instanceof Tree).toBe(true);
+      expect(result.value).toBe(2);
     });
 
     it('uses the value as-is if it is already a Tree', () => {
@@ -28,9 +28,9 @@ describe('Tree', () => {
       const treeB = new Tree(2);
       const result = treeA.addChild(treeB);
 
-      expect(result instanceof Tree).toEqual(true);
-      expect(result.value instanceof Tree).toEqual(false);
-      expect(result.value).toEqual(treeB.value);
+      expect(result instanceof Tree).toBe(true);
+      expect(result.value instanceof Tree).toBe(false);
+      expect(result.value).toBe(treeB.value);
     });
   });
 
@@ -38,8 +38,8 @@ describe('Tree', () => {
     it('correctly identifies whether the tree contains a given value', () => {
       const treeA = new Tree('a');
 
-      expect(treeA.contains('a')).toEqual(true);
-      expect(treeA.contains('b')).toEqual(false);
+      expect(treeA.contains('a')).toBe(true);
+      expect(treeA.contains('b')).toBe(false);
     });
 
     it('correctly identifies whether a child tree contains a given value', () => {
@@ -48,10 +48,10 @@ describe('Tree', () => {
       treeB.addChild('c');
       treeA.addChild(treeB);
 
-      expect(treeB.contains('b')).toEqual(true);
-      expect(treeB.contains('c')).toEqual(true);
-      expect(treeA.contains('b')).toEqual(true);
-      expect(treeA.contains('c')).toEqual(true);
+      expect(treeB.contains('b')).toBe(true);
+      expect(treeB.contains('c')).toBe(true);
+      expect(treeA.contains('b')).toBe(true);
+      expect(treeA.contains('c')).toBe(true);
     });
   });
 
