@@ -47,38 +47,50 @@ function swap(arr, a, b) {
   arr[b] = temp;
 }
 
-function partition(arr, lo, hi) {
-  // start with pivot at lo
-  let pivotIdx = lo;
-  let pivotValue = arr[hi];
+export function partition(arr, loIdx, hiIdx) {
+  const lo = loIdx || 0;
+  const hi = hiIdx || arr.length - 1;
+  const pivotValue = arr[hi];
+  let pivot = lo;
 
-  // loop through full array
   for (let i = lo; i < hi; i += 1) {
-    // any values less than pivot VALUE should be swapped to pivot IDX
     if (arr[i] < pivotValue) {
-      swap(arr, i, pivotIdx);
-      // then increment pivot IDX
-      pivotIdx += 1;
+      swap(arr, i, pivot);
+      pivot += 1;
     }
   }
-
-  // at end, swap pivot VALUE to pivot IDX
-  swap(arr, pivotIdx, hi);
-  return pivotIdx;
+  swap(arr, pivot, hi);
+  return pivot;
 }
 
-function quickSort(arr, loIdx, hiIdx) {
-  // call partition on the current 'arr' to get a new pivotIdx
-  // continue doing this with split arrays until lo === hi
-  if (loIdx >= hiIdx) {
+export function quickSort(arr, loIdx, hiIdx) {
+  const lo = loIdx || 0;
+  const hi = hiIdx || arr.length - 1;
+  if (lo >= hi) {
     return;
   }
 
-  const lo = loIdx || 0;
-  const hi = hiIdx || arr.length - 1;
   const pivot = partition(arr, lo, hi);
   quickSort(arr, lo, pivot - 1);
   quickSort(arr, pivot + 1, hi);
 }
 
-export default quickSort;
+export function quickSortI(arr) {
+  const len = arr.length;
+  const stack = [0, len - 1];
+
+  while (stack.length) {
+    const hi = stack.pop();
+    const lo = stack.pop();
+    const p = partition(arr, lo, hi);
+
+    const lenL = p - lo;
+    const lenR = hi - p;
+    if (lenR > 1) {
+      stack.push(...[p + 1, hi]);
+    }
+    if (lenL > 1) {
+      stack.push(...[lo, p - 1]);
+    }
+  }
+}
