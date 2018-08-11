@@ -48,13 +48,13 @@ function swap(arr, a, b) {
 }
 
 export function partition(arr, loIdx, hiIdx) {
-  const lo = loIdx || 0;
-  const hi = hiIdx || arr.length - 1;
+  const lo = loIdx === undefined ? 0 : loIdx;
+  const hi = hiIdx === undefined ? arr.length - 1 : hiIdx;
   const pivotValue = arr[hi];
   let pivot = lo;
 
   for (let i = lo; i < hi; i += 1) {
-    if (arr[i] < pivotValue) {
+    if (arr[i] <= pivotValue) {
       swap(arr, i, pivot);
       pivot += 1;
     }
@@ -64,15 +64,15 @@ export function partition(arr, loIdx, hiIdx) {
 }
 
 export function quickSort(arr, loIdx, hiIdx) {
-  const lo = loIdx || 0;
-  const hi = hiIdx || arr.length - 1;
+  const lo = loIdx === undefined ? 0 : loIdx;
+  const hi = hiIdx === undefined ? arr.length - 1 : hiIdx;
   if (lo >= hi) {
     return;
   }
 
-  const pivot = partition(arr, lo, hi);
-  quickSort(arr, lo, pivot - 1);
-  quickSort(arr, pivot + 1, hi);
+  const p = partition(arr, lo, hi);
+  quickSort(arr, lo, p - 1);
+  quickSort(arr, p + 1, hi);
 }
 
 export function quickSortI(arr) {
