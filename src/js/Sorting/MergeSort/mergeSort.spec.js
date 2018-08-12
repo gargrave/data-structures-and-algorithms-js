@@ -1,4 +1,4 @@
-import { mergeSortIterative, mergeSortRecursive } from './d_mergeSort';
+import { mergeSortIterative, mergeSortRecursive } from './mergeSort';
 
 describe('Recursive merge sort', () => {
   describe('mergeSortRecursive', () => {

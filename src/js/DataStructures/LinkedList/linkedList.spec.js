@@ -1,4 +1,4 @@
-import LinkedList from './d_linkedList';
+import LinkedList from './linkedList';
 
 const values = 'abcdefghijklmnopqrstuvwxyz'.split('');
 

@@ -1,4 +1,4 @@
- import Stack from './a_stack';
+ import Stack from './stack';
 
 describe('Stack', () => {
   const DEFAULT_SIZE = 5;

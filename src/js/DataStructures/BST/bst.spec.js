@@ -1,4 +1,4 @@
-import BinarySearchTree from './f_bst';
+import BinarySearchTree from './bst';
 
 describe('BinarySearchTree', () => {
   describe('insert', () => {

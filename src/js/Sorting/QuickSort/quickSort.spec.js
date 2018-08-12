@@ -1,4 +1,4 @@
-import { partition, quickSort, quickSortI } from './e_quickSort';
+import { partition, quickSort, quickSortI } from './quickSort';
 
 const randomizedArray = (len = 100) =>
   Array(len).fill(1).map(

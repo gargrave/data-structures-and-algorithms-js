@@ -1,4 +1,4 @@
-import Tree from './e_tree';
+import Tree from './tree';
 
 function deepTree() {
   const root = new Tree('a1');

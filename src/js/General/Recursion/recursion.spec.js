@@ -5,7 +5,7 @@ import {
   loopDownR,
   recursiveMultiplier,
   recursiveReverse,
-} from './c_recursion';
+} from './recursion';
 
 describe('Recursion', () => {
   describe('loopDownI', () => {
