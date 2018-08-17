@@ -47,50 +47,45 @@ function swap(arr, a, b) {
   arr[b] = temp;
 }
 
-export function partition(arr, loIdx, hiIdx) {
-  const lo = loIdx === undefined ? 0 : loIdx;
-  const hi = hiIdx === undefined ? arr.length - 1 : hiIdx;
-  const pivotValue = arr[hi];
+export function partition(arr, loIdx = 0, hiIdx = arr.length - 1) {
+  const lo = typeof loIdx === 'undefined' ? 0 : loIdx;
+  const hi = typeof hiIdx === 'undefined' ? arr.length - 1 : hiIdx;
+  const pivotVal = arr[hi];
   let pivot = lo;
 
   for (let i = lo; i < hi; i += 1) {
-    if (arr[i] <= pivotValue) {
+    if (arr[i] < pivotVal) {
       swap(arr, i, pivot);
       pivot += 1;
     }
   }
+
   swap(arr, pivot, hi);
   return pivot;
 }
 
 export function quickSort(arr, loIdx, hiIdx) {
-  const lo = loIdx === undefined ? 0 : loIdx;
-  const hi = hiIdx === undefined ? arr.length - 1 : hiIdx;
-  if (lo >= hi) {
-    return;
-  }
+  const lo = typeof loIdx === 'undefined' ? 0 : loIdx;
+  const hi = typeof hiIdx === 'undefined' ? arr.length - 1 : hiIdx;
 
-  const p = partition(arr, lo, hi);
-  quickSort(arr, lo, p - 1);
-  quickSort(arr, p + 1, hi);
+  if (lo <= hi) {
+    const pivot = partition(arr, lo, hi);
+    quickSort(arr, lo, pivot - 1);
+    quickSort(arr, pivot + 1, hi);
+  }
 }
 
 export function quickSortI(arr) {
-  const len = arr.length;
-  const stack = [0, len - 1];
+  const stack = [0, arr.length - 1];
 
   while (stack.length) {
     const hi = stack.pop();
     const lo = stack.pop();
-    const p = partition(arr, lo, hi);
 
-    const lenL = p - lo;
-    const lenR = hi - p;
-    if (lenR > 1) {
-      stack.push(...[p + 1, hi]);
-    }
-    if (lenL > 1) {
-      stack.push(...[lo, p - 1]);
+    if (lo <= hi) {
+      const pivot = partition(arr, lo, hi);
+      stack.push(lo, pivot - 1);
+      stack.push(pivot + 1, hi);
     }
   }
 }

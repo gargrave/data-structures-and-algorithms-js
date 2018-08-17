@@ -1,8 +1,9 @@
 import { partition, quickSort, quickSortI } from './quickSort';
 
-const randomizedArray = (len = 100) =>
-  Array(len).fill(1).map(
-    () => Math.floor(Math.random() * 10 + 1)
+const randomizedArray = (len = 100) => Array(len)
+  .fill(1)
+  .map(
+    () => Math.floor(Math.random() * 10 + 1),
   );
 
 describe('partition', () => {
