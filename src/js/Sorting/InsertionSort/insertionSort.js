@@ -6,7 +6,8 @@
 Description
 
 Iterate over array and grow a sorted array behind current element.
-For each position, compare value of element with previous elements and swap positions if previous element is larger.
+For each position, compare value of element with previous
+  elements and swap positions if previous element is larger.
 
 example:
 [ 3 4 5|1 2 6 ]
@@ -76,15 +77,14 @@ function insertionSort(arr, comparator) {
   const len = arr.length;
   const sorted = arr.concat();
   const compare = comparator || defaultCompartor;
-  
-  for (let i = 1; i < len; i++) {
-    for (let j = i; j > 0; j--) {
+
+  for (let i = 1; i < len; i += 1) {
+    for (let j = i; j > 0; j -= 1) {
       if (compare(sorted[j], sorted[j - 1]) > 0) {
         swap(sorted, j, j - 1);
       }
     }
   }
-  
   return sorted;
 }
 

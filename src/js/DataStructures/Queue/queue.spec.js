@@ -23,7 +23,7 @@ describe('Queue', () => {
   });
 
   describe('enqueue', () => {
-    it('should insert the value and return the new index', () => {
+    it('inserts the value and return the new index', () => {
       let result = queue.enqueue(100);
       expect(result).toEqual(0);
       expect(queue.count()).toEqual(1);
@@ -32,18 +32,18 @@ describe('Queue', () => {
       expect(queue.count()).toEqual(2);
     });
 
-    it('should not add the value and should return a string if capacity has been reached', () => {
+    it('does not insert the value and returns a string if capacity has been reached', () => {
       queue = new Queue(2);
       queue.enqueue(1);
       queue.enqueue(2);
-      let result = queue.enqueue(3);
+      const result = queue.enqueue(3);
       expect(queue.count()).toEqual(2);
       expect(typeof result).toEqual('string');
     });
   });
 
   describe('dequeue', () => {
-    it('should remove and return the first-added value', () => {
+    it('removes and return the first-added value', () => {
       queue.enqueue(1);
       queue.enqueue(2);
       expect(queue.count()).toEqual(2);
@@ -55,14 +55,14 @@ describe('Queue', () => {
       expect(queue.count()).toEqual(0);
     });
 
-    it('should return null if the queue is empty', () => {
+    it('returns null if the queue is empty', () => {
       const result = queue.dequeue();
       expect(result).toEqual(null);
     });
   });
 
   describe('peek', () => {
-    it('should return the first-added value', () => {
+    it('returns the first-added value', () => {
       queue.enqueue(1);
       queue.enqueue(2);
       expect(queue.count()).toEqual(2);
@@ -74,13 +74,13 @@ describe('Queue', () => {
       expect(queue.count()).toEqual(2);
     });
 
-    it('should return null if the queue is empty', () => {
+    it('returns null if the queue is empty', () => {
       expect(queue.peek()).toEqual(null);
     });
   });
 
   describe('count', () => {
-    it('should return the current number of items', () => {
+    it('returns the current number of items', () => {
       queue.enqueue(1);
       expect(queue.count()).toEqual(1);
       queue.enqueue(1);
@@ -93,14 +93,14 @@ describe('Queue', () => {
   });
 
   describe('contains', () => {
-    it('should return true if the value is in the queue', () => {
+    it('returns true if the value is in the queue', () => {
       queue.enqueue(1);
       queue.enqueue(2);
       queue.enqueue(3);
       expect(queue.contains(2)).toEqual(true);
     });
 
-    it('should return false if the value is not in the queue', () => {
+    it('returns false if the value is not in the queue', () => {
       queue.enqueue(1);
       queue.enqueue(2);
       queue.enqueue(3);
@@ -109,7 +109,7 @@ describe('Queue', () => {
   });
 
   describe('until', () => {
-    it('should return the correct number of steps to reach the value', () => {
+    it('returns the correct number of steps to reach the value', () => {
       queue.enqueue(1);
       queue.enqueue(2);
       queue.enqueue(3);
@@ -117,7 +117,7 @@ describe('Queue', () => {
       expect(queue.until(3)).toEqual(2);
     });
 
-    it('should return -1 if the value is not found', () => {
+    it('returns -1 if the value is not found', () => {
       queue.enqueue(1);
       queue.enqueue(2);
       queue.enqueue(3);

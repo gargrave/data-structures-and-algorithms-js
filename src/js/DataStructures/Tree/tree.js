@@ -55,7 +55,7 @@ export default class Tree {
 
   addChild(childValue) {
     const child = childValue instanceof Tree
-      ? childValue 
+      ? childValue
       : new Tree(childValue);
     this.children.push(child);
     return child;
@@ -65,8 +65,10 @@ export default class Tree {
     if (this.value === value) {
       return true;
     } else {
-      for (let i = 0; i < this.children.length; i++) {
-        return this.children[i].contains(value);
+      for (let i = 0; i < this.children.length; i += 1) {
+        if (this.children[i].contains(value)) {
+          return true;
+        }
       }
     }
     return false;
@@ -85,7 +87,7 @@ export default class Tree {
     if (!queue.length) {
       return;
     }
-    
+
     const [next, ...rest] = queue;
     next.traverseBreadthFirst(cb, rest);
   }

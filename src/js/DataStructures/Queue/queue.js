@@ -6,7 +6,8 @@
 - Abstract data type
 - FIFO - First in, first out
 - Collection of elements with enqueue and dequeue operations.
-- Note that there is a natural order. Elements are removed in the reverse order of their addition.
+- Note that there is a natural order. Elements are removed in
+  the reverse order of their addition.
 
 DO NOT use an array and the native push/shift method in your
 implementation. Use an object as the underlying data structure.
@@ -34,7 +35,8 @@ myQueue.count()
 = Additional Exercises
 ====================================
 
-Modify your queue to take a max capacity and return a string if you try to add an element when there's no more room:
+Modify your queue to take a max capacity and return a string if you try
+to add an element when there's no more room:
   myQueue.enqueue(value)
   => "Max capacity already reached. Remove element before adding a new one."
 
@@ -43,7 +45,8 @@ Create a 'contains' method to check if a value is in the queue:
   => true/false
   What's the time complexity?
 
-Create an 'until' method to get the number of dequeues until you get to a certain value:
+Create an 'until' method to get the number of dequeues until you get to a
+certain value:
   queue values - (first)2-5-7-3-6-9(last)
   myQueue.until(7)
   => 3
@@ -54,10 +57,10 @@ Create an 'until' method to get the number of dequeues until you get to a certai
 ====================================
 
 1. Implement a queue using two stacks.
-
-2. Implement a double-ended queue, with the following methods: enqueueLeft, dequeueLeft, enqueueRight, dequeueRight.
-
-3. Given a tree, print out the value of each node in breadth-first order using a queue data structure.
+2. Implement a double-ended queue, with the following methods: enqueueLeft,
+   dequeueLeft, enqueueRight, dequeueRight.
+3. Given a tree, print out the value of each node in breadth-first order
+    using a queue data structure.
 */
 
 export default class Queue {
@@ -102,20 +105,15 @@ export default class Queue {
   }
 
   contains(val) {
-    for (let prop in this.data) {
-      if (this.data[prop] === val) {
-        return true;
-      }
-    }
-    return false;
+    return Object.values(this.data).includes(val);
   }
 
   until(val) {
-    for (let i = this.firstIndex; i < this.lastIndex; i++) {
+    for (let i = this.firstIndex; i < this.lastIndex; i += 1) {
       if (this.data[i] === val) {
         return i - this.firstIndex;
       }
     }
     return -1;
-  };
+  }
 }

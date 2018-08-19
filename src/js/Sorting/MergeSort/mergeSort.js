@@ -5,20 +5,23 @@
 
 Description
 
-Merge sort employs a divide and conquer strategy - merge two sorted subarrays into one sorted array.
+Merge sort employs a divide and conquer strategy:
+  merge two sorted subarrays into one sorted array.
 
 Recursive top-down approach:
 - Recursively break down array into two subarrays and sort them recursively.
 - Subarrays are broken down until they have only 1 element (implying they are sorted).
 
 Iterative bottom-up approach:
-- Split array into sublists of size 1, merge adjacent sublists into sorted lists, repeat until no more sublists.
+- Split array into sublists of size 1, merge adjacent
+    sublists into sorted lists, repeat until no more sublists.
 
 ====================================
 = Exercises
 ====================================
 
-- Implement recursive merge sort (you might want to write a helper function to handle the merge step)
+- Implement recursive merge sort (you might want to write
+    a helper function to handle the merge step)
 - Implement iterative merge sort
 - Identify time complexity
 - Identify space complexity
@@ -46,7 +49,8 @@ Properties:
 
 Use cases:
 If stabilty is a requirement and using extra space is no concern,
-merge sort is great because it's simple to implement, it's the only stable O(nlog(n)) mergeSortIterativeng algorithm.
+merge sort is great because it's simple to implement,
+  it's the only stable O(nlog(n)) mergeSortIterativeng algorithm.
 */
 
 // Rough results based on Arrays of randomized ints:
@@ -67,15 +71,15 @@ merge sort is great because it's simple to implement, it's the only stable O(nlo
 
 function merge(a, b) {
   const combinedLen = a.length + b.length;
-  let merged = [];
+  const merged = [];
   let idxA = 0;
   let idxB = 0;
 
   while (merged.length < combinedLen) {
     if (idxB === b.length || a[idxA] < b[idxB]) {
-      merged.push(a[idxA++]);
+      merged.push(a[idxA++]); // eslint-disable-line
     } else {
-      merged.push(b[idxB++]);
+      merged.push(b[idxB++]); // eslint-disable-line
     }
   }
   return merged;

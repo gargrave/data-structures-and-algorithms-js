@@ -6,11 +6,12 @@
 - Abstract data type
 - LIFO - Last in, first out
 - Collection of elements with push and pop operations.
-- Note that there is a natural order. Elements are removed in the reverse order of their addition.
+- Note that there is a natural order. Elements are removed
+    in the reverse order of their addition.
 
-DO NOT use an array and the native push/pop method in your implementation. That's too easy, yeah? =P
+DO NOT use an array and the native push/pop method in your implementation.
+That's too easy, yeah? =P
 Use an object as the underlying data structure.
-
 
 ====================================
 = Operations
@@ -35,7 +36,8 @@ myStack.count()
 = Additional Exercises
 ====================================
 
-Modify your stack to take a max capacity and return a string if you try to add an element when there's no more room:
+Modify your stack to take a max capacity and return a string if you try
+  to add an element when there's no more room:
   myStack.push(value)
   => "Max capacity already reached. Remove element before adding a new one."
 
@@ -87,7 +89,7 @@ export default class Stack {
     if (this.count() >= this.capacity) {
       return 'Max capacity already reached. Remove element before adding a new one.';
     }
-    
+
     this.lastIndex += 1;
     this.data[this.lastIndex] = value;
     return this.lastIndex;
@@ -117,16 +119,11 @@ export default class Stack {
   }
 
   contains(val) {
-    for (let key in this.data) {
-      if (this.data[key] === val) {
-        return true;
-      }
-    }
-    return false;
+    return Object.values(this.data).includes(val);
   }
 
   until(val) {
-    for (let i = this.lastIndex; i >= 0; i--) {
+    for (let i = this.lastIndex; i >= 0; i -= 1) {
       if (this.data[i] === val) {
         return this.lastIndex - i;
       }

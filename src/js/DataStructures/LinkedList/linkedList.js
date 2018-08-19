@@ -62,7 +62,8 @@ way to do so?
 
 Think about time complexity. What would it be for your current implementation of a linked list?
 
-How can we modify our data structures (Node and Linked List classes) so that we can make these O(1) operations?
+How can we modify our data structures (Node and Linked List classes)
+  so that we can make these O(1) operations?
 
 Once you've come up with a plan, implement the following methods.
 
@@ -104,9 +105,25 @@ export default class LinkedList {
     }
   }
 
+  get headNode() {
+    return this._head;
+  }
+
+  get head() {
+    return this._head && this._head.value;
+  }
+
+  get tail() {
+    return this._tail && this._tail.value;
+  }
+
+  get count() {
+    return this._count;
+  }
+
   findNode(value) {
     let node = this._head;
-    while(node) {
+    while (node) {
       if (node.value === value) {
         return node;
       }
@@ -166,7 +183,7 @@ export default class LinkedList {
 
   forEach(cb) {
     let node = this._head;
-    while(node) {
+    while (node) {
       cb(node.value);
       node = node.next;
     }
@@ -180,21 +197,5 @@ export default class LinkedList {
       node = node.next;
     }
     return str;
-  }
-
-  get headNode() {
-    return this._head;
-  }
-
-  get head() {
-    return this._head && this._head.value;
-  }
-
-  get tail() {
-    return this._tail && this._tail.value;
-  }
-
-  get count() {
-    return this._count;
   }
 }

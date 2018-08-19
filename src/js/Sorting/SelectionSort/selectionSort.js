@@ -37,7 +37,8 @@ Stable Variant:
     by taking input: [{value: 15}, {value: 10, order: 1}, {value: 10, order: 2}]
 
 - Implement selection sort for a linked list (you can use your
-    data structure implemention from earlier in the course). How does this impact performance and stability?
+    data structure implemention from earlier in the course).
+    How does this impact performance and stability?
 */
 
 // Rough results based on Arrays of randomized ints:
@@ -57,7 +58,7 @@ function swap(arr, idxA, idxB) {
 function defaultCompartor(a, b) {
   if (a > b) {
     return 1;
-  } 
+  }
   if (a < b) {
     return -1;
   }
@@ -68,20 +69,20 @@ function selectionSort(arr, comparator) {
   const len = arr.length;
   const sorted = arr.concat();
   const compare = comparator || defaultCompartor;
-  
-  for (let i = 0; i < len; i++) {
+
+  for (let i = 0; i < len; i += 1) {
     let minIdx = i;
-    for (let j = i; j < len; j++) {
+    for (let j = i; j < len; j += 1) {
       if (compare(sorted[minIdx], sorted[j]) > 0) {
         minIdx = j;
       }
     }
-    
+
     if (minIdx !== i) {
       swap(sorted, minIdx, i);
     }
   }
-  
+
   return sorted;
 }
 
