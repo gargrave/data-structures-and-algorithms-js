@@ -10,14 +10,14 @@ import {
 describe('Recursion', () => {
   describe('loopDownI', () => {
     it('should return an array with the correct number of elements', () => {
-      let start = 5;
-      let arr = loopDownI(start);
+      const start = 5;
+      const arr = loopDownI(start);
       expect(arr.length).toEqual(start + 1);
     });
 
     it('should have "n" as the first value, and 0 as the last', () => {
-      let start = 5;
-      let arr = loopDownI(start);
+      const start = 5;
+      const arr = loopDownI(start);
       expect(arr[0]).toEqual(start);
       expect(arr[start]).toEqual(0);
     });
@@ -25,14 +25,14 @@ describe('Recursion', () => {
 
   describe('loopDownR', () => {
     it('should return an array with the correct number of elements', () => {
-      let start = 5;
-      let arr = loopDownR(start);
+      const start = 5;
+      const arr = loopDownR(start);
       expect(arr.length).toEqual(start + 1);
     });
 
     it('should have "n" as the first value, and 0 as the last', () => {
-      let start = 5;
-      let arr = loopDownR(start);
+      const start = 5;
+      const arr = loopDownR(start);
       expect(arr[0]).toEqual(start);
       expect(arr[start]).toEqual(0);
     });
@@ -54,13 +54,13 @@ describe('Recursion', () => {
 
   describe('recursiveMultiplier', () => {
     it('should correctly multiply the array by various values', () => {
-      let arr = [1, 2, 3];
+      const arr = [1, 2, 3];
       expect(recursiveMultiplier(arr, 2)).toEqual([2, 4, 6]);
       expect(recursiveMultiplier(arr, 3)).toEqual([3, 6, 9]);
     });
 
     it('should return the same values if no "num" arg is provided', () => {
-      let arr = [1, 2, 3];
+      const arr = [1, 2, 3];
       expect(recursiveMultiplier(arr)).toEqual(arr);
     });
   });

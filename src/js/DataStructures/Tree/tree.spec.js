@@ -59,7 +59,7 @@ describe('Tree', () => {
     it('correctly traverses the Tree depth-first', () => {
       const result = [];
       const expected = ['a1', 'b1', 'b2', 'b3', 'b3_1', 'b3_2', 'b4', 'a2'];
-      deepTree().traverseDepthFirst((val) => result.push(val));
+      deepTree().traverseDepthFirst(val => result.push(val));
       expect(result).toEqual(expected);
     });
   });
@@ -68,7 +68,7 @@ describe('Tree', () => {
     it('correctly traverses the Tree depth-first', () => {
       const result = [];
       const expected = ['a1', 'b1', 'a2', 'b2', 'b3', 'b4', 'b3_1', 'b3_2'];
-      deepTree().traverseBreadthFirst((val) => result.push(val));
+      deepTree().traverseBreadthFirst(val => result.push(val));
       expect(result).toEqual(expected);
     });
   });

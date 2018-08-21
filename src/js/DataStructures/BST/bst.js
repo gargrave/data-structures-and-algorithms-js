@@ -24,20 +24,23 @@ contains(value)
 
 traverseDepthFirstInOrder(cb)
   => undefined
-  Invoke the callback for every node in a depth-first in-order (visit left branch, then current node, than right branch)
+  Invoke the callback for every node in a depth-first in-order (visit left branch,
+    then current node, than right branch)
   Note: In-Order traversal is most common type for binary trees.
     For binary search tree, this visits the nodes in ascending order (hence the name).
 
 traverseDepthFirstPreOrder(callback)
   => undefined
-  Invoke the callback for every node in a depth-first pre-order (visits current node before its child nodes)
+  Invoke the callback for every node in a depth-first pre-order
+    (visits current node before its child nodes)
 
 traverseDepthFirstPostOrder(callback)
   => undefined
-  Invoke the callback for every node in a depth-first post-order (visit the current node after its child nodes)
+  Invoke the callback for every node in a depth-first post-order
+    (visit the current node after its child nodes)
 
 isValid()
-  => returns true if BST is a valid BST; otherwise returns false. 
+  => returns true if BST is a valid BST; otherwise returns false.
   - This method is useful for checking your other methods.
 
 removeNode(value)
@@ -46,12 +49,14 @@ removeNode(value)
 
 checkIfFull()
   => true/false
-  A binary tree is full if every node has either zero or two children (no nodes have only one child)
+  A binary tree is full if every node has either zero or two children
+    (no nodes have only one child)
 
 checkIfBalanced()
   => true/false
   For this exercise, let's say that a tree is balanced if the minimum
-  height and the maximum height differ by no more than 1. The height for a branch is the number of levels below the root.
+  height and the maximum height differ by no more than 1. The height
+    for a branch is the number of levels below the root.
 
 ====================================
 = Additional Exercises

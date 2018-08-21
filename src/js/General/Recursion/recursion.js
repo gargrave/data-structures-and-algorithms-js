@@ -41,12 +41,12 @@ export const expR = (base, e) => {
 // 'arr and num', and multiplies each arr value by num and returns an array of the values.
 export const recursiveMultiplier = (arr, num = 1) => {
   const multArr = [];
-  const mult = (arr, num, i) => {
-    if (i === arr.length) {
+  const mult = (_arr, _num, i) => {
+    if (i === _arr.length) {
       return multArr;
     }
-    multArr.push(arr[i] * num);
-    return mult(arr, num, i + 1);
+    multArr.push(_arr[i] * _num);
+    return mult(_arr, _num, i + 1);
   };
   return mult(arr, num, 0);
 };
@@ -57,14 +57,16 @@ export const recursiveReverse = (arr = []) => {
   if (!Array.isArray(arr)) {
     arr = [];
   }
-  
-  let revArr = [];
-  function rev(arr, i) {
+
+  const revArr = [];
+
+  function rev(_arr, i) {
     if (i < 0) {
       return revArr;
     }
-    revArr.push(arr[i]);
-    return rev(arr, i - 1);
+    revArr.push(_arr[i]);
+    return rev(_arr, i - 1);
   }
+
   return rev(arr, arr.length - 1);
 };

@@ -4,7 +4,7 @@ const values = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
 const buildList = (len = 0) => {
   const ll = new LinkedList();
-  for (let i = 0; i < len; i++) {
+  for (let i = 0; i < len; i += 1) {
     ll.append(values[i]);
   }
   return ll;
