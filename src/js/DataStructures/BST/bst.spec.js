@@ -113,6 +113,37 @@ describe('BinarySearchTree', () => {
   });
 
   describe('remove', () => {
+    it('correctly removes a single-value tree', () => {
+      const bst = new BinarySearchTree(1);
+      bst.remove(1);
+
+      const arr = [];
+      bst.traverseDepthFirstInOrder(val => val !== undefined && arr.push(val));
+      expect(arr).toEqual([]);
+    });
+
+    it('does nothing if the value is not found', () => {
+      const bst = new BinarySearchTree(5);
+      bst.insert(3);
+      bst.insert(2);
+      bst.insert(4);
+      bst.insert(7);
+
+      bst.remove(6);
+
+      let arr = [];
+      bst.traverseDepthFirstInOrder(val => arr.push(val));
+      expect(arr).toEqual([2, 3, 4, 5, 7]);
+
+      arr = [];
+      bst.traverseDepthFirstPreOrder(val => arr.push(val));
+      expect(arr).toEqual([5, 3, 2, 4, 7]);
+
+      arr = [];
+      bst.traverseDepthFirstPostOrder(val => arr.push(val));
+      expect(arr).toEqual([2, 4, 3, 7, 5]);
+    });
+
     it('correctly removes the min node', () => {
       const bst = new BinarySearchTree(10);
       bst.insert(5);
@@ -162,15 +193,74 @@ describe('BinarySearchTree', () => {
     });
 
     it('correctly removes a node with a single left child', () => {
-      // TODO: fill this out!
+      const bst = new BinarySearchTree(10);
+      bst.insert(9);
+      bst.insert(8);
+
+      bst.remove(9);
+
+      let arr = [];
+      bst.traverseDepthFirstInOrder(val => arr.push(val));
+      expect(arr).toEqual([8, 10]);
+
+      arr = [];
+      bst.traverseDepthFirstPreOrder(val => arr.push(val));
+      expect(arr).toEqual([10, 8]);
+
+      arr = [];
+      bst.traverseDepthFirstPostOrder(val => arr.push(val));
+      expect(arr).toEqual([8, 10]);
     });
 
     it('correctly removes a node with a single right child', () => {
-      // TODO: fill this out!
+      const bst = new BinarySearchTree(10);
+      bst.insert(8);
+      bst.insert(9);
+
+      bst.remove(8);
+
+      let arr = [];
+      bst.traverseDepthFirstInOrder(val => arr.push(val));
+      expect(arr).toEqual([9, 10]);
+
+      arr = [];
+      bst.traverseDepthFirstPreOrder(val => arr.push(val));
+      expect(arr).toEqual([10, 9]);
+
+      arr = [];
+      bst.traverseDepthFirstPostOrder(val => arr.push(val));
+      expect(arr).toEqual([9, 10]);
     });
 
     it('correctly removes a node with 2 children', () => {
-      // TODO: fill this out!
+      const bst = new BinarySearchTree(10);
+      bst.insert(5);
+      bst.insert(15);
+      bst.insert(3);
+      bst.insert(8);
+      bst.insert(12);
+      bst.insert(17);
+      bst.insert(2);
+      bst.insert(4);
+      bst.insert(6);
+      bst.insert(9);
+      bst.insert(16);
+      bst.insert(18);
+      bst.insert(7);
+
+      bst.remove(5);
+
+      let arr = [];
+      bst.traverseDepthFirstInOrder(val => val !== undefined && arr.push(val));
+      expect(arr).toEqual([2, 3, 4, 6, 7, 8, 9, 10, 12, 15, 16, 17, 18]);
+
+      arr = [];
+      bst.traverseDepthFirstPreOrder(val => val !== undefined && arr.push(val));
+      expect(arr).toEqual([10, 6, 3, 2, 4, 8, 7, 9, 15, 12, 17, 16, 18]);
+
+      arr = [];
+      bst.traverseDepthFirstPostOrder(val => val !== undefined && arr.push(val));
+      expect(arr).toEqual([2, 4, 3, 7, 9, 8, 6, 12, 16, 18, 17, 15, 10]);
     });
   });
 
@@ -201,8 +291,8 @@ describe('BinarySearchTree', () => {
 
     it('returns true if all sub-trees have zero children', () => {
       const bst = new BinarySearchTree(10);
-      const bstL = bst.insert(5);
-      const bstR = bst.insert(15);
+      bst.insert(5);
+      bst.insert(15);
       expect(bst.isFull()).toBe(true);
     });
 
@@ -273,6 +363,13 @@ describe('BinarySearchTree', () => {
   });
 
   describe('traverseDepthFirstInOrder', () => {
+    it('correctly handles a single-element tree', () => {
+      const bst = new BinarySearchTree(5);
+      const arr = [];
+      bst.traverseDepthFirstInOrder(val => arr.push(val));
+      expect(arr).toEqual([5]);
+    });
+
     it('traverses the values in the correct order', () => {
       const bst = new BinarySearchTree(10);
       bst.insert(5);

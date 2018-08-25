@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 /*
 ====================================
 = BINARY SEARCH TREES
@@ -96,6 +95,17 @@ export default class BinarySearchTree {
     }
   }
 
+  _childCount() {
+    let count = 0;
+    if (this.left) { count += 1; }
+    if (this.right) { count += 1; }
+    return count;
+  }
+
+  _leftChildIs(val) {
+    return this.left && this.left.value === val;
+  }
+
   contains(value) {
     if (this.value === value) {
       return true;
@@ -144,6 +154,7 @@ export default class BinarySearchTree {
     return Math.abs(dl - dr) <= 1;
   }
 
+  /* eslint-disable no-unused-expressions */
   traverseDepthFirstInOrder(callback) {
     this.left && this.left.traverseDepthFirstInOrder(callback);
     callback(this.value);
@@ -161,73 +172,56 @@ export default class BinarySearchTree {
     this.right && this.right.traverseDepthFirstPostOrder(callback);
     callback(this.value);
   }
-
-  /* eslint-disable max-len */
+  /* eslint-enable no-unused-expressions */
 
   /*
   BST node removal:
-    1. If a node has no children, we can simply remove this node from the tree. No changes necessary.
+    1. If a node has no children, we can simply remove this node from the tree.
     2. If a node has only a single child, we simply remove this node and replace it with said child.
-    3. If a node has two children, this is where it gets tricky:
+    3. If a node has two children, this is where it gets fun:
       1. Find the in-order successor (i.e. the left-most child in the right sub-tree)
       2. Copy the *value* of this node into the node being deleted.
       3. The successor node can now be easily deleted, because it will only have 0 or 1 children.
    */
-  remove(value) {
-    // TODO: implement this, yo!
+  remove(value, parent = null) {
+    if (this.value === value) {
+      if (parent) {
+        // we have a parent node, so we need to adjust the tree!
+        const count = this._childCount();
+        if (count === 0) {
+          // no children; simply unlink this node from its parent
+          if (parent._leftChildIs(this.value)) {
+            parent.left = undefined;
+          } else {
+            parent.right = undefined;
+          }
+        } else if (count === 1) {
+          // one child; remove this node, and put the single child in its place
+          const myChild = this.left || this.right;
+          if (parent._leftChildIs(this.value)) {
+            parent.left = myChild;
+          } else {
+            parent.right = myChild;
+          }
+          this.left = undefined;
+          this.right = undefined;
+        } else if (count === 2) {
+          const successorVal = this.right.findMin();
+          this.remove(successorVal);
+          this.value = successorVal;
+        }
+      } else {
+        // no parent; this is a root node; simply clear its value
+        this.value = undefined;
+      }
+    } else {
+      // this is not the value you are looking for.
+      // continue traversing the tree in the appropriate direction
+      if (this.value > value && this.left) {
+        this.left.remove(value, this);
+      } else if (this.value < value && this.right) {
+        this.right.remove(value, this);
+      }
+    }
   }
 }
-
-// BinarySearchTree.prototype.remove = function(value) {
-//   const traverse = (current, parent = null) => {
-//     if (current.value === value) {
-//       if (parent) {
-//         if (parent.right && parent.right.value === value) {
-//           // 'current' is the parent's 'right'
-//           if (current.left && current.right) {
-//             // do cool stuff
-//             const min = current.getMinNode();
-//             current.remove(min.value);
-//             current.value = min.value;
-//           } else if (current.left) {
-//             // only has a 'left' child -> set parent's child to current's 'left'
-//             parent.right = current.left;
-//           } else if (current.right) {
-//             // only has a 'right' child -> set parent's child to current's 'right'
-//             parent.right = current.right;
-//           } else {
-//             parent.right = null;
-//           }
-//         } else if (parent.left && parent.left.value === value) {
-//           // 'current' is the parent's 'left'
-//           if (current.left && current.right) {
-//             // do cool stuff
-//             const min = current.getMinNode();
-//             current.remove(min.value);
-//             current.value = min.value;
-//           } else if (current.left) {
-//             // only has a 'left' child -> set parent's child to current's 'left'
-//             parent.left = current.left;
-//           } else if (current.right) {
-//             // only has a 'right' child -> set parent's child to current's 'right'
-//             parent.left = current.right;
-//           } else {
-//             parent.left = null;
-//           }
-//         }
-//       } else {
-//         // this is a root
-//       }
-//     } else if (current.value < value) {
-//       if (current.right) {
-//         traverse(current.right, current);
-//       }
-//     } else {
-//       if (current.left) {
-//         traverse(current.left, current);
-//       }
-//     }
-//   };
-//   traverse(this);
-//   return this;
-// };
