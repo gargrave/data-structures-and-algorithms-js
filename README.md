@@ -1,4 +1,4 @@
-# Various Algorithms and Data Structures in JS
+# Data Structures and Algorithms in JS
 
 The goal here is to provide a comprehensive test suite for each topic with empty implementations, so you can practice implementing these as a refresher, learning for the first time, warming up your chops at the start of the day, or whatever.
 
