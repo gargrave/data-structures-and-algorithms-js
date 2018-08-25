@@ -3,7 +3,7 @@
 export const loopDownI = (n) => {
   const arr = [];
   while (n >= 0) {
-    arr.push(n--);
+    arr.push(n--); // eslint-disable-line
   }
   return arr;
 };
