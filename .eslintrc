@@ -18,6 +18,7 @@
     "no-else-return": "off",
     "no-lonely-if": "off",
     "no-param-reassign": "off",
+    "no-return-assign": "off",
     "no-unused-vars": "warn",
     "no-underscore-dangle": "off",
     "quotes": ["warn", "single"],
