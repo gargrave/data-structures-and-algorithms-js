@@ -2,7 +2,7 @@
 
 The goal here is to provide a comprehensive test suite for each topic with empty implementations, so you can practice implementing these as a refresher, learning for the first time, warming up your chops at the start of the day, or whatever.
 
-I still need to add the branch with the actual implementations removed, so this is still a work-in-progress.
+This `master` branch has all of the solutions populated and all of the tests passing. If you're looking for the branch where you can find the solutions emptied out and tests failing, the [no-solutions branch](https://github.com/gargrave/data-structures-and-algorithms-js/tree/no-solutions) is what you want.
 
 A lot of this material is based off of and/or expanded from the following repos:
 
