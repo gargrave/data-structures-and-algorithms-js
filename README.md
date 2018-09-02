@@ -1,8 +1,12 @@
 # Data Structures and Algorithms in JS
 
-The goal here is to provide a comprehensive test suite for each topic with empty implementations, so you can practice implementing these as a refresher, learning for the first time, warming up your chops at the start of the day, or whatever.
+## No Solutions Branch
 
-I still need to add the branch with the actual implementations removed, so this is still a work-in-progress.
+The branch you are looking at has all of the solutions removed, so you use this to practice implementing them. 👍
+
+---
+
+The goal here is to provide a comprehensive test suite for each topic with empty implementations, so you can practice implementing these as a refresher, learning for the first time, warming up your chops at the start of the day, or whatever.
 
 A lot of this material is based off of and/or expanded from the following repos:
 
