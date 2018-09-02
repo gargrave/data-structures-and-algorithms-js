@@ -76,16 +76,15 @@ export function quickSort(arr, loIdx, hiIdx) {
 }
 
 export function quickSortI(arr) {
-  const stack = [0, arr.length - 1];
+  const stack = [[0, arr.length - 1]];
 
   while (stack.length) {
-    const hi = stack.pop();
-    const lo = stack.pop();
+    const [lo, hi] = stack.pop();
 
     if (lo <= hi) {
       const pivot = partition(arr, lo, hi);
-      stack.push(lo, pivot - 1);
-      stack.push(pivot + 1, hi);
+      stack.push([lo, pivot - 1]);
+      stack.push([pivot + 1, hi]);
     }
   }
 }
