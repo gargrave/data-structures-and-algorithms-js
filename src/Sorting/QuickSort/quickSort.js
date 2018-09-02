@@ -48,43 +48,10 @@ function swap(arr, a, b) {
 }
 
 export function partition(arr, loIdx = 0, hiIdx = arr.length - 1) {
-  const lo = typeof loIdx === 'undefined' ? 0 : loIdx;
-  const hi = typeof hiIdx === 'undefined' ? arr.length - 1 : hiIdx;
-  const pivotVal = arr[hi];
-  let pivot = lo;
-
-  for (let i = lo; i < hi; i += 1) {
-    if (arr[i] < pivotVal) {
-      swap(arr, i, pivot);
-      pivot += 1;
-    }
-  }
-
-  swap(arr, pivot, hi);
-  return pivot;
 }
 
 export function quickSort(arr, loIdx, hiIdx) {
-  const lo = typeof loIdx === 'undefined' ? 0 : loIdx;
-  const hi = typeof hiIdx === 'undefined' ? arr.length - 1 : hiIdx;
-
-  if (lo <= hi) {
-    const pivot = partition(arr, lo, hi);
-    quickSort(arr, lo, pivot - 1);
-    quickSort(arr, pivot + 1, hi);
-  }
 }
 
 export function quickSortI(arr) {
-  const stack = [[0, arr.length - 1]];
-
-  while (stack.length) {
-    const [lo, hi] = stack.pop();
-
-    if (lo <= hi) {
-      const pivot = partition(arr, lo, hi);
-      stack.push([lo, pivot - 1]);
-      stack.push([pivot + 1, hi]);
-    }
-  }
 }

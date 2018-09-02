@@ -66,24 +66,6 @@ function defaultCompartor(a, b) {
 }
 
 function selectionSort(arr, comparator) {
-  const len = arr.length;
-  const sorted = arr.concat();
-  const compare = comparator || defaultCompartor;
-
-  for (let i = 0; i < len; i += 1) {
-    let minIdx = i;
-    for (let j = i; j < len; j += 1) {
-      if (compare(sorted[minIdx], sorted[j]) > 0) {
-        minIdx = j;
-      }
-    }
-
-    if (minIdx !== i) {
-      swap(sorted, minIdx, i);
-    }
-  }
-
-  return sorted;
 }
 
 export default selectionSort;

@@ -55,21 +55,6 @@ function swap(arr, idxA, idxB) {
 }
 
 function bubbleSort(arr) {
-  const sorted = arr.concat();
-  const len = sorted.length;
-
-  // loop from the top down; this will be our 'wall',
-  // where we know the values have already been sorted
-  for (let i = len; i >= 0; i -= 1) {
-    for (let j = 0; j < i; j += 1) {
-      // compare each element to the one right of it, and if the right
-      // one is larger, swap them
-      if (sorted[j] > sorted[j + 1]) {
-        swap(sorted, j, j + 1);
-      }
-    }
-  }
-  return sorted;
 }
 
 export default bubbleSort;

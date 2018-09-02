@@ -65,55 +65,23 @@ certain value:
 
 export default class Queue {
   constructor(capacity) {
-    this.capacity = Math.max(capacity, 2);
-    this.data = {};
-    this.firstIndex = 0;
-    this.lastIndex = -1;
   }
 
   enqueue(value) {
-    if (this.count() >= this.capacity) {
-      return 'Max capacity already reached. Remove element before adding a new one.';
-    }
-
-    this.lastIndex += 1;
-    this.data[this.lastIndex] = value;
-    return this.lastIndex;
   }
 
   dequeue() {
-    if (this.count() === 0) {
-      return null;
-    }
-
-    const i = this.firstIndex;
-    const val = this.data[i];
-    this.firstIndex += 1;
-    delete this.data[i];
-    return val;
   }
 
   peek() {
-    if (this.count() === 0) {
-      return null;
-    }
-    return this.data[this.firstIndex];
   }
 
   count() {
-    return this.lastIndex - this.firstIndex + 1;
   }
 
   contains(val) {
-    return Object.values(this.data).includes(val);
   }
 
   until(val) {
-    for (let i = this.firstIndex; i < this.lastIndex; i += 1) {
-      if (this.data[i] === val) {
-        return i - this.firstIndex;
-      }
-    }
-    return -1;
   }
 }

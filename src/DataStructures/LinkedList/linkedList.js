@@ -87,115 +87,46 @@ Reimplement stack and queue data structures using linked lists.
 
 class Node {
   constructor(value, next = null) {
-    this.value = value;
-    this.next = next;
   }
 }
 
 export default class LinkedList {
   constructor(headValue) {
-    if (headValue) {
-      this._head = new Node(headValue);
-      this._tail = this._head;
-      this._count = 1;
-    } else {
-      this._head = null;
-      this._tail = null;
-      this._count = 0;
-    }
   }
 
   get headNode() {
-    return this._head;
   }
 
   get head() {
-    return this._head && this._head.value;
   }
 
   get tail() {
-    return this._tail && this._tail.value;
   }
 
   get count() {
-    return this._count;
   }
 
   findNode(value) {
-    let node = this._head;
-    while (node) {
-      if (node.value === value) {
-        return node;
-      }
-      node = node.next;
-    }
-    return null;
   }
 
   append(value) {
-    const newTail = new Node(value);
-    if (this._tail) {
-      this._tail.next = newTail;
-    }
-    this._tail = newTail;
-    if (!this._head) {
-      this._head = newTail;
-    }
-    this._count += 1;
-    return newTail;
   }
 
   insertHead(value) {
-    const prevHead = this._head;
-    this._head = new Node(value, prevHead);
-    this._count += 1;
-    return this._head;
   }
 
   insertAfter(refNode, value) {
-    if (!refNode || !this.findNode(refNode.value)) {
-      return null;
-    }
-
-    const newNode = new Node(value, refNode.next);
-    refNode.next = newNode;
-    this._count += 1;
-    return newNode;
   }
 
   removeHead() {
-    const node = this._head;
-    this._head = node.next;
-    this._count -= 1;
-    return node;
   }
 
   removeAfter(refNode) {
-    if (!refNode || !refNode.next) {
-      return null;
-    }
-
-    const node = refNode.next;
-    refNode.next = node.next;
-    this._count -= 1;
-    return node;
   }
 
   forEach(cb) {
-    let node = this._head;
-    while (node) {
-      cb(node.value);
-      node = node.next;
-    }
   }
 
   print() {
-    let node = this._head;
-    let str = `${node.value}`;
-    while (node.next) {
-      str = `${str}, ${node.next.value}`;
-      node = node.next;
-    }
-    return str;
   }
 }
