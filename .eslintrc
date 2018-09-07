@@ -12,6 +12,7 @@
     "node": true
   },
   "rules": {
+    "arrow-parens": "off",
     "no-debugger": "warn",
     "no-else-return": "off",
     "no-lonely-if": "off",
