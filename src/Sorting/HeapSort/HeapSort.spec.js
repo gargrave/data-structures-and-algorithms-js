@@ -1,6 +1,20 @@
 import shuffle from 'lodash/shuffle'
 
-import heapSort from './HeapSort'
+import heapSort, { createMaxHeap } from './HeapSort'
+
+describe('createMaxHeap', () => {
+  it('correctly handles small array', () => {
+    const arr = [1, 3]
+    createMaxHeap(arr)
+    expect(arr).toEqual([3, 1])
+  })
+
+  it('correctly creates a max heap from an array', () => {
+    const arr = [2, 5, 3, 8, 10, 6, 4, 7, 9, 1]
+    createMaxHeap(arr)
+    expect(arr).toEqual([10, 9, 6, 8, 5, 3, 4, 7, 2, 1])
+  })
+})
 
 describe('heap sort', () => {
   it('should sort correctly', () => {
