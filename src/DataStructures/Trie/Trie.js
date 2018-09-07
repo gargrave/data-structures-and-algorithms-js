@@ -18,24 +18,24 @@
 */
 class Node {
   constructor(str) {
-    this.children = [];
-    this.value = str[0] || '';
-    this.isEnd = false;
+    this.children = []
+    this.value = str[0] || ''
+    this.isEnd = false
   }
 
   add(str) {
-    const value = str[0];
-    const rest = str.substr(1);
-    let node = this.children.find(c => c.value === value);
+    const value = str[0]
+    const rest = str.substr(1)
+    let node = this.children.find(c => c.value === value)
     if (!node) {
-      node = new Node(value);
-      this.children.push(node);
+      node = new Node(value)
+      this.children.push(node)
     }
 
     if (rest) {
-      node.add(rest);
+      node.add(rest)
     } else {
-      node.isEnd = true;
+      node.isEnd = true
     }
   }
 
@@ -47,25 +47,27 @@ class Node {
   _find(value) {
     for (let i = 0; i < this.children.length; i += 1) {
       if (this.children[i].value === value) {
-        return this.children[i]._find(value);
+        return this.children[i]._find(value)
       }
     }
     if (this.value === value) {
-      return this;
+      return this
     }
-    return null;
+    return null
   }
 
   _buildWord(search, onWordComplete, word = '') {
-    const value = search[0];
-    const next = search[1];
+    const value = search[0]
+    const next = search[1]
 
     this.children
       .filter(c => !value || c.value === next)
-      .forEach(c => c._buildWord(search, onWordComplete, `${word}${this.value}`));
+      .forEach(c =>
+        c._buildWord(search, onWordComplete, `${word}${this.value}`),
+      )
 
     if (this.isEnd) {
-      onWordComplete(`${word}${this.value}`);
+      onWordComplete(`${word}${this.value}`)
     }
   }
 
@@ -78,50 +80,53 @@ class Node {
    *    substring from the current search that represents what this node spells out so far.
    */
   _findSearchRoot(search) {
-    return search.split('').reduce((acc, val) => {
-      const newSearchRoot = acc.searchRoot._find(val);
-      if (newSearchRoot) {
-        return {
-          searchRoot: newSearchRoot,
-          searchBaseStr: `${acc.searchBaseStr}${val}`,
-        };
-      }
-      return acc;
-    }, {
-      searchRoot: this,
-      searchBaseStr: '',
-    });
+    return search.split('').reduce(
+      (acc, val) => {
+        const newSearchRoot = acc.searchRoot._find(val)
+        if (newSearchRoot) {
+          return {
+            searchRoot: newSearchRoot,
+            searchBaseStr: `${acc.searchBaseStr}${val}`,
+          }
+        }
+        return acc
+      },
+      {
+        searchRoot: this,
+        searchBaseStr: '',
+      },
+    )
   }
 
   _complete(search) {
-    const { searchRoot, searchBaseStr } = this._findSearchRoot(search);
+    const { searchRoot, searchBaseStr } = this._findSearchRoot(search)
     // if our search root is an end node, the user is searching for the full word;
     // simply return the full search term
     if (searchRoot.isEnd) {
-      return [search];
+      return [search]
     }
 
     // this will generally be undefined, but in some edge cases like when
     // a user has searched for a string that returns no results, it will populated
-    const searchSubstr = search.substr(searchBaseStr.length);
+    const searchSubstr = search.substr(searchBaseStr.length)
 
     return searchRoot.children.reduce((acc, child) => {
-      const onWordComplete = word => acc.push(`${searchBaseStr}${word}`);
-      child._buildWord(searchSubstr, onWordComplete, '');
-      return acc;
-    }, []);
+      const onWordComplete = word => acc.push(`${searchBaseStr}${word}`)
+      child._buildWord(searchSubstr, onWordComplete, '')
+      return acc
+    }, [])
   }
 
   /**
    * Builds a list of "suggestions" from the Trie based on the provided search term.
    */
   complete(str) {
-    return this._complete(str);
+    return this._complete(str)
   }
 }
 
 export default function createTrie(words) {
-  const root = new Node('');
-  words.forEach(word => root.add(word.toLowerCase()));
-  return root;
+  const root = new Node('')
+  words.forEach(word => root.add(word.toLowerCase()))
+  return root
 }

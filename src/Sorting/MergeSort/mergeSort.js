@@ -70,47 +70,47 @@ merge sort is great because it's simple to implement,
 // @ 50000 elements: 31.725ms
 
 function merge(a, b) {
-  const combinedLen = a.length + b.length;
-  const merged = [];
-  let idxA = 0;
-  let idxB = 0;
+  const combinedLen = a.length + b.length
+  const merged = []
+  let idxA = 0
+  let idxB = 0
 
   while (merged.length < combinedLen) {
     if (idxB === b.length || a[idxA] < b[idxB]) {
-      merged.push(a[idxA++]); // eslint-disable-line
+      merged.push(a[idxA++]) // eslint-disable-line
     } else {
-      merged.push(b[idxB++]); // eslint-disable-line
+      merged.push(b[idxB++]) // eslint-disable-line
     }
   }
-  return merged;
+  return merged
 }
 
 // a.k.a. "top down" merge sort
 export function mergeSortRecursive(arr) {
   if (arr.length === 1) {
-    return arr;
+    return arr
   }
 
-  const mid = arr.length / 2;
-  const left = mergeSortRecursive(arr.slice(0, mid));
-  const right = mergeSortRecursive(arr.slice(mid));
-  return merge(left, right);
+  const mid = arr.length / 2
+  const left = mergeSortRecursive(arr.slice(0, mid))
+  const right = mergeSortRecursive(arr.slice(mid))
+  return merge(left, right)
 }
 
 // a.k.a. "bottom up" merge sort
 export function mergeSortIterative(arr) {
-  const len = arr.length;
+  const len = arr.length
 
   for (let i = 1; i <= len; i *= 2) {
     for (let j = i; j < len; j += i * 2) {
-      const lo = j - i;
-      const hi = j + i;
-      const left = arr.slice(lo, j);
-      const right = arr.slice(j, hi);
-      const merged = merge(left, right);
-      arr.splice(lo, merged.length, ...merged);
+      const lo = j - i
+      const hi = j + i
+      const left = arr.slice(lo, j)
+      const right = arr.slice(j, hi)
+      const merged = merge(left, right)
+      arr.splice(lo, merged.length, ...merged)
     }
   }
 
-  return arr;
+  return arr
 }

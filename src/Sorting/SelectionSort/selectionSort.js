@@ -50,40 +50,40 @@ Stable Variant:
 // @ 50000 elements: 2315.804ms
 
 function swap(arr, idxA, idxB) {
-  const temp = arr[idxA];
-  arr[idxA] = arr[idxB];
-  arr[idxB] = temp;
+  const temp = arr[idxA]
+  arr[idxA] = arr[idxB]
+  arr[idxB] = temp
 }
 
 function defaultCompartor(a, b) {
   if (a > b) {
-    return 1;
+    return 1
   }
   if (a < b) {
-    return -1;
+    return -1
   }
-  return 0;
+  return 0
 }
 
 function selectionSort(arr, comparator) {
-  const len = arr.length;
-  const sorted = arr.concat();
-  const compare = comparator || defaultCompartor;
+  const len = arr.length
+  const sorted = arr.concat()
+  const compare = comparator || defaultCompartor
 
   for (let i = 0; i < len; i += 1) {
-    let minIdx = i;
+    let minIdx = i
     for (let j = i; j < len; j += 1) {
       if (compare(sorted[minIdx], sorted[j]) > 0) {
-        minIdx = j;
+        minIdx = j
       }
     }
 
     if (minIdx !== i) {
-      swap(sorted, minIdx, i);
+      swap(sorted, minIdx, i)
     }
   }
 
-  return sorted;
+  return sorted
 }
 
-export default selectionSort;
+export default selectionSort

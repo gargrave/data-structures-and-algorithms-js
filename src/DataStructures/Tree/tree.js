@@ -49,46 +49,44 @@ https://en.wikipedia.org/wiki/Trie
 
 export default class Tree {
   constructor(value) {
-    this.value = value;
-    this.children = [];
+    this.value = value
+    this.children = []
   }
 
   addChild(childValue) {
-    const child = childValue instanceof Tree
-      ? childValue
-      : new Tree(childValue);
-    this.children.push(child);
-    return child;
+    const child = childValue instanceof Tree ? childValue : new Tree(childValue)
+    this.children.push(child)
+    return child
   }
 
   contains(value) {
     if (this.value === value) {
-      return true;
+      return true
     } else {
       for (let i = 0; i < this.children.length; i += 1) {
         if (this.children[i].contains(value)) {
-          return true;
+          return true
         }
       }
     }
-    return false;
+    return false
   }
 
   traverseDepthFirst(cb) {
-    cb(this.value);
-    this.children.forEach((c) => {
-      c.traverseDepthFirst(cb);
-    });
+    cb(this.value)
+    this.children.forEach(c => {
+      c.traverseDepthFirst(cb)
+    })
   }
 
   traverseBreadthFirst(cb, queue = []) {
-    cb(this.value);
-    queue = queue.concat(this.children);
+    cb(this.value)
+    queue = queue.concat(this.children)
     if (!queue.length) {
-      return;
+      return
     }
 
-    const [next, ...rest] = queue;
-    next.traverseBreadthFirst(cb, rest);
+    const [next, ...rest] = queue
+    next.traverseBreadthFirst(cb, rest)
   }
 }

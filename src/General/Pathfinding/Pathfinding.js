@@ -10,47 +10,50 @@
 // you will almost certainly need to transform the maze into your own
 // data structure to keep track of all the meta data
 class SimpleQueue {
-  _data = [];
+  _data = []
 
-  _pointer = 0;
+  _pointer = 0
 
   enqueue(val) {
-    this._data.push(val);
+    this._data.push(val)
   }
 
   dequeue() {
-    return this._data[this._pointer++]; // eslint-disable-line
+    return this._data[this._pointer++] // eslint-disable-line
   }
 
   peek() {
-    return this._data[this._pointer];
+    return this._data[this._pointer]
   }
 }
-
 
 const Visitor = {
   None: 0,
   Start: 1,
   End: 2,
-};
+}
 
-const UNPASSABLE_TILES = [1];
+const UNPASSABLE_TILES = [1]
 
-const getNodeKey = (x, y) => `${x}_${y}`;
+const getNodeKey = (x, y) => `${x}_${y}`
 
 /**
  * Converts the raw 2d Array into a graph-like data structure with node
  * objects that track their own positions and statuses
  */
 function buildGraph(maze, [startX, startY], [endX, endY]) {
-  const isStart = (x, y) => x === startX && y === startY;
-  const isEnd = (x, y) => x === endX && y === endY;
+  const isStart = (x, y) => x === startX && y === startY
+  const isEnd = (x, y) => x === endX && y === endY
 
   return maze.reduce((accum, row, y) => {
     const reducedRow = row.reduce((rowAccum, rowVal, x) => {
-      let visitedBy = Visitor.None;
-      if (isStart(x, y)) { visitedBy = Visitor.Start; }
-      if (isEnd(x, y)) { visitedBy = Visitor.End; }
+      let visitedBy = Visitor.None
+      if (isStart(x, y)) {
+        visitedBy = Visitor.Start
+      }
+      if (isEnd(x, y)) {
+        visitedBy = Visitor.End
+      }
 
       const node = {
         steps: 0,
@@ -58,11 +61,11 @@ function buildGraph(maze, [startX, startY], [endX, endY]) {
         visitedBy,
         x,
         y,
-      };
-      return { ...rowAccum, [getNodeKey(x, y)]: node };
-    }, {});
-    return { ...accum, ...reducedRow };
-  }, {});
+      }
+      return { ...rowAccum, [getNodeKey(x, y)]: node }
+    }, {})
+    return { ...accum, ...reducedRow }
+  }, {})
 }
 
 /**
@@ -72,25 +75,27 @@ function buildGraph(maze, [startX, startY], [endX, endY]) {
  * that has not yet been visited by said node.
  */
 function getNeighbors(graph, node) {
-  const isSameNode = (nodeA, nodeB) => nodeA.x === nodeB.x && nodeA.y === nodeB.y;
+  const isSameNode = (nodeA, nodeB) =>
+    nodeA.x === nodeB.x && nodeA.y === nodeB.y
 
-  const neighbors = [];
+  const neighbors = []
   for (let x = -1; x <= 1; x += 1) {
     for (let y = -1; y <= 1; y += 1) {
-      const key = getNodeKey(node.x + x, node.y + y);
-      const neighbor = graph[key];
-      const isValidNeighor = !!neighbor
-        && neighbor.visitedBy !== node.visitedBy
-        && !isSameNode(neighbor, node)
-        && !UNPASSABLE_TILES.includes(neighbor.value)
-        && (x === 0 || y === 0);
+      const key = getNodeKey(node.x + x, node.y + y)
+      const neighbor = graph[key]
+      const isValidNeighor =
+        !!neighbor &&
+        neighbor.visitedBy !== node.visitedBy &&
+        !isSameNode(neighbor, node) &&
+        !UNPASSABLE_TILES.includes(neighbor.value) &&
+        (x === 0 || y === 0)
 
       if (isValidNeighor) {
-        neighbors.push(neighbor);
+        neighbors.push(neighbor)
       }
     }
   }
-  return neighbors;
+  return neighbors
 }
 
 /**
@@ -104,37 +109,41 @@ function getNeighbors(graph, node) {
  */
 function pathsHaveMet(nodeA, nodeB) {
   if (!nodeA.visitedBy || !nodeB.visitedBy) {
-    return false;
+    return false
   }
-  return nodeA.visitedBy !== nodeB.visitedBy;
+  return nodeA.visitedBy !== nodeB.visitedBy
 }
 
-export default function findShortestPathLength(maze, [startX, startY], [endX, endY]) {
-  const graph = buildGraph(maze, [startX, startY], [endX, endY]);
-  const queue = new SimpleQueue();
-  queue.enqueue(graph[getNodeKey(startX, startY)]);
-  queue.enqueue(graph[getNodeKey(endX, endY)]);
+export default function findShortestPathLength(
+  maze,
+  [startX, startY],
+  [endX, endY],
+) {
+  const graph = buildGraph(maze, [startX, startY], [endX, endY])
+  const queue = new SimpleQueue()
+  queue.enqueue(graph[getNodeKey(startX, startY)])
+  queue.enqueue(graph[getNodeKey(endX, endY)])
 
   while (queue.peek()) {
-    const node = queue.dequeue();
-    const neighbors = getNeighbors(graph, node);
+    const node = queue.dequeue()
+    const neighbors = getNeighbors(graph, node)
 
     for (let i = 0; i < neighbors.length; i += 1) {
-      const neighbor = neighbors[i];
+      const neighbor = neighbors[i]
       // we have found a path! return the sum of the steps + 1 extra for "this step"
       if (pathsHaveMet(node, neighbor)) {
-        return node.steps + neighbor.steps + 1;
+        return node.steps + neighbor.steps + 1
       }
 
       const updated = {
         ...neighbors[i],
         steps: node.steps + 1,
         visitedBy: node.visitedBy,
-      };
+      }
 
-      graph[getNodeKey(updated.x, updated.y)] = updated;
-      queue.enqueue(updated);
+      graph[getNodeKey(updated.x, updated.y)] = updated
+      queue.enqueue(updated)
     }
   }
-  return -1;
+  return -1
 }

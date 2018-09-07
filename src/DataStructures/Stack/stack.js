@@ -80,64 +80,64 @@ from tower#1 to tower#3 in such a way that none of the constraints are violated.
 
 export default class Stack {
   constructor(capacity) {
-    this.capacity = Math.max(capacity, 2);
-    this.data = {};
-    this.lastIndex = -1;
+    this.capacity = Math.max(capacity, 2)
+    this.data = {}
+    this.lastIndex = -1
   }
 
   push(value) {
     if (this.count() >= this.capacity) {
-      return 'Max capacity already reached. Remove element before adding a new one.';
+      return 'Max capacity already reached. Remove element before adding a new one.'
     }
 
-    this.lastIndex += 1;
-    this.data[this.lastIndex] = value;
-    return this.lastIndex;
+    this.lastIndex += 1
+    this.data[this.lastIndex] = value
+    return this.lastIndex
   }
 
   pop() {
     if (this.count() === 0) {
-      return null;
+      return null
     }
 
-    const i = this.lastIndex;
-    const val = this.data[i];
-    this.lastIndex -= 1;
-    delete this.data[i];
-    return val;
+    const i = this.lastIndex
+    const val = this.data[i]
+    this.lastIndex -= 1
+    delete this.data[i]
+    return val
   }
 
   peek() {
     if (this.count() === 0) {
-      return null;
+      return null
     }
-    return this.data[this.lastIndex];
+    return this.data[this.lastIndex]
   }
 
   count() {
-    return this.lastIndex + 1;
+    return this.lastIndex + 1
   }
 
   contains(val) {
-    return Object.values(this.data).includes(val);
+    return Object.values(this.data).includes(val)
   }
 
   until(val) {
     for (let i = this.lastIndex; i >= 0; i -= 1) {
       if (this.data[i] === val) {
-        return this.lastIndex - i;
+        return this.lastIndex - i
       }
     }
-    return -1;
+    return -1
   }
 
   min() {
-    let minIndex = 0;
+    let minIndex = 0
     Object.keys(this.data).forEach((key, i) => {
       if (this.data[key] < this.data[minIndex]) {
-        minIndex = i;
+        minIndex = i
       }
-    });
-    return this.data[minIndex] || 0;
+    })
+    return this.data[minIndex] || 0
   }
 }

@@ -66,107 +66,107 @@ Resize the hash table:
 // Simple hashing function to use in your implementation
 // source: http://pmav.eu/stuff/javascript-hashing-functions/source.html
 function simpleHash(key, tableSize) {
-  const len = key.length;
-  let h = 0;
+  const len = key.length
+  let h = 0
   for (let i = 0; i < len; i += 1) {
-    h += key.charCodeAt(i) * (i + 1);
+    h += key.charCodeAt(i) * (i + 1)
   }
-  return h % tableSize;
+  return h % tableSize
 }
 
 export default class HashTable {
   constructor(size) {
-    this.size = size;
-    this.data = Array(size);
-    this.count = 0;
+    this.size = size
+    this.data = Array(size)
+    this.count = 0
   }
 
   find(key) {
-    const hash = simpleHash(key, this.size);
+    const hash = simpleHash(key, this.size)
     if (this.data[hash]) {
-      const bucket = this.data[hash];
-      const len = bucket.length;
+      const bucket = this.data[hash]
+      const len = bucket.length
 
       for (let idx = 0; idx < len; idx += 1) {
-        const [_key] = bucket[idx];
+        const [_key] = bucket[idx]
         if (_key === key) {
           return {
             idx,
             bucket,
-          };
+          }
         }
       }
     }
-    return undefined;
+    return undefined
   }
 
   set(key, value) {
-    const hash = simpleHash(key, this.size);
+    const hash = simpleHash(key, this.size)
     if (!this.data[hash]) {
-      this.data[hash] = [];
+      this.data[hash] = []
     }
 
-    const bucket = this.data[hash];
-    const found = this.find(key);
+    const bucket = this.data[hash]
+    const found = this.find(key)
     if (found) {
-      bucket[found.idx] = [key, value];
-      return this;
+      bucket[found.idx] = [key, value]
+      return this
     }
 
-    bucket.push([key, value]);
-    this.count += 1;
+    bucket.push([key, value])
+    this.count += 1
     if (this.count >= this.size * 0.75) {
-      this.resize(2);
+      this.resize(2)
     }
-    return this;
+    return this
   }
 
   get(key) {
-    const found = this.find(key);
+    const found = this.find(key)
     if (found) {
-      const { bucket, idx } = found;
-      return bucket[idx][1];
+      const { bucket, idx } = found
+      return bucket[idx][1]
     }
-    return undefined;
+    return undefined
   }
 
   delete(key) {
-    const found = this.find(key);
+    const found = this.find(key)
     if (found) {
-      const { bucket, idx } = found;
-      bucket.splice(idx, 1);
+      const { bucket, idx } = found
+      bucket.splice(idx, 1)
 
-      this.count -= 1;
+      this.count -= 1
       if (this.count <= this.size * 0.25) {
-        this.resize(0.5);
+        this.resize(0.5)
       }
     }
   }
 
   has(key) {
-    return !!this.find(key);
+    return !!this.find(key)
   }
 
   getCount() {
-    return this.count;
+    return this.count
   }
 
   forEach(callback) {
-    this.data.forEach((bucket) => {
-      bucket.forEach(item => callback(item));
-    });
+    this.data.forEach(bucket => {
+      bucket.forEach(item => callback(item))
+    })
   }
 
   resize(mult) {
-    const oldData = this.data;
-    this.count = 0;
-    this.size = Math.floor(this.size * mult);
-    this.data = Array(this.size);
+    const oldData = this.data
+    this.count = 0
+    this.size = Math.floor(this.size * mult)
+    this.data = Array(this.size)
 
-    oldData.forEach((bucket) => {
+    oldData.forEach(bucket => {
       bucket.forEach(([k, v]) => {
-        this.set(k, v);
-      });
-    });
+        this.set(k, v)
+      })
+    })
   }
 }
