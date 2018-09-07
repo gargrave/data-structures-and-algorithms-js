@@ -20,11 +20,10 @@ class Node {
   /**
    * Builds a list of "suggestions" from the Trie based on the provided search term.
    */
-  complete(str) {
-  }
+  complete(str) {}
 }
 
 export default function createTrie(words) {
-  const root = new Node('');
-  return root;
+  const root = new Node('')
+  return root
 }

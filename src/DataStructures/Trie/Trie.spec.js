@@ -1,39 +1,39 @@
-import intersection from 'lodash/intersection';
+import intersection from 'lodash/intersection'
 
-import createTrie from './Trie';
-import { CITY_NAMES } from './Trie.helpers';
+import createTrie from './Trie'
+import { CITY_NAMES } from './Trie.helpers'
 
 describe('Tries', () => {
   it('dataset of 10 – san', () => {
-    const root = createTrie(CITY_NAMES.slice(0, 10));
-    const completions = root.complete('san');
-    expect(completions.length).toBe(3);
+    const root = createTrie(CITY_NAMES.slice(0, 10))
+    const completions = root.complete('san')
+    expect(completions.length).toBe(3)
     expect(
       intersection(completions, ['san antonio', 'san diego', 'san jose'])
         .length,
-    ).toBe(3);
-  });
+    ).toBe(3)
+  })
 
   it('dataset of 10 – philadelph', () => {
-    const root = createTrie(CITY_NAMES.slice(0, 10));
-    const completions = root.complete('philadelph');
-    expect(completions.length).toBe(1);
-    expect(intersection(completions, ['philadelphia']).length).toBe(1);
-  });
+    const root = createTrie(CITY_NAMES.slice(0, 10))
+    const completions = root.complete('philadelph')
+    expect(completions.length).toBe(1)
+    expect(intersection(completions, ['philadelphia']).length).toBe(1)
+  })
 
   it('dataset of 25 – d', () => {
-    const root = createTrie(CITY_NAMES.slice(0, 25));
-    const completions = root.complete('d');
-    expect(completions.length).toBe(3);
+    const root = createTrie(CITY_NAMES.slice(0, 25))
+    const completions = root.complete('d')
+    expect(completions.length).toBe(3)
     expect(
       intersection(completions, ['dallas', 'detroit', 'denver']).length,
-    ).toBe(3);
-  });
+    ).toBe(3)
+  })
 
   it('dataset of 200 – new', () => {
-    const root = createTrie(CITY_NAMES.slice(0, 200));
-    const completions = root.complete('new');
-    expect(completions.length).toBe(5);
+    const root = createTrie(CITY_NAMES.slice(0, 200))
+    const completions = root.complete('new')
+    expect(completions.length).toBe(5)
     expect(
       intersection(completions, [
         'new york',
@@ -42,31 +42,29 @@ describe('Tries', () => {
         'newark',
         'newport news',
       ]).length,
-    ).toBe(5);
-  });
+    ).toBe(5)
+  })
 
   it('dataset of 200 – bo', () => {
-    const root = createTrie(CITY_NAMES.slice(0, 200));
-    const completions = root.complete('bo');
-    expect(completions.length).toBe(2);
-    expect(intersection(completions, ['boston', 'boise city']).length).toBe(
-      2,
-    );
-  });
+    const root = createTrie(CITY_NAMES.slice(0, 200))
+    const completions = root.complete('bo')
+    expect(completions.length).toBe(2)
+    expect(intersection(completions, ['boston', 'boise city']).length).toBe(2)
+  })
 
   it('dataset of 500 – sal', () => {
-    const root = createTrie(CITY_NAMES.slice(0, 500));
-    const completions = root.complete('sal');
-    expect(completions.length).toBe(3);
+    const root = createTrie(CITY_NAMES.slice(0, 500))
+    const completions = root.complete('sal')
+    expect(completions.length).toBe(3)
     expect(
       intersection(completions, ['salt lake city', 'salem', 'salinas']).length,
-    ).toBe(3);
-  });
+    ).toBe(3)
+  })
 
   it('dataset of 925 – san', () => {
-    const root = createTrie(CITY_NAMES);
-    const completions = root.complete('san');
-    expect(completions.length).toBe(30);
+    const root = createTrie(CITY_NAMES)
+    const completions = root.complete('san')
+    expect(completions.length).toBe(30)
     expect(
       intersection(completions, [
         'san antonio',
@@ -100,35 +98,35 @@ describe('Tries', () => {
         'sandy springs',
         'sanford',
       ]).length,
-    ).toBe(30);
-  });
-});
+    ).toBe(30)
+  })
+})
 
 describe('edge cases', () => {
   it('handle whole words – seattle', () => {
-    const root = createTrie(CITY_NAMES.slice(0, 30));
-    const completions = root.complete('seattle');
-    expect(completions.length).toBe(1);
-    expect(intersection(completions, ['seattle']).length).toBe(1);
-  });
+    const root = createTrie(CITY_NAMES.slice(0, 30))
+    const completions = root.complete('seattle')
+    expect(completions.length).toBe(1)
+    expect(intersection(completions, ['seattle']).length).toBe(1)
+  })
 
   it('handle no match', () => {
-    const root = createTrie(CITY_NAMES.slice(0, 30));
-    const completions = root.complete('no match');
-    expect(completions.length).toBe(0);
-  });
+    const root = createTrie(CITY_NAMES.slice(0, 30))
+    const completions = root.complete('no match')
+    expect(completions.length).toBe(0)
+  })
 
   it('handle words that are a subset of another string – salin', () => {
-    const root = createTrie(CITY_NAMES.slice(0, 800));
-    const completions = root.complete('salin');
-    expect(completions.length).toBe(2);
-    expect(intersection(completions, ['salina', 'salinas']).length).toBe(2);
-  });
+    const root = createTrie(CITY_NAMES.slice(0, 800))
+    const completions = root.complete('salin')
+    expect(completions.length).toBe(2)
+    expect(intersection(completions, ['salina', 'salinas']).length).toBe(2)
+  })
 
   it('safely handles nodes that are "end nodes" yet still have children', () => {
-    const root = createTrie(['sandy springs', 'sandy']);
-    const completions = root.complete('san');
-    expect(completions.length).toBe(2);
-    expect(intersection(completions, ['sandy', 'sandy springs']).length).toBe(2);
-  });
-});
+    const root = createTrie(['sandy springs', 'sandy'])
+    const completions = root.complete('san')
+    expect(completions.length).toBe(2)
+    expect(intersection(completions, ['sandy', 'sandy springs']).length).toBe(2)
+  })
+})

@@ -48,18 +48,13 @@ https://en.wikipedia.org/wiki/Trie
 */
 
 export default class Tree {
-  constructor(value) {
-  }
+  constructor(value) {}
 
-  addChild(childValue) {
-  }
+  addChild(childValue) {}
 
-  contains(value) {
-  }
+  contains(value) {}
 
-  traverseDepthFirst(cb) {
-  }
+  traverseDepthFirst(cb) {}
 
-  traverseBreadthFirst(cb) {
-  }
+  traverseBreadthFirst(cb) {}
 }

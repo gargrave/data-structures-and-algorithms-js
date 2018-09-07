@@ -42,16 +42,13 @@ Use cases:
 - It has a higher worstcase time complexity than merge sort (if pivot is not in center of array)
 */
 function swap(arr, a, b) {
-  const temp = arr[a];
-  arr[a] = arr[b];
-  arr[b] = temp;
+  const temp = arr[a]
+  arr[a] = arr[b]
+  arr[b] = temp
 }
 
-export function partition(arr, loIdx = 0, hiIdx = arr.length - 1) {
-}
+export function partition(arr, loIdx = 0, hiIdx = arr.length - 1) {}
 
-export function quickSort(arr, loIdx, hiIdx) {
-}
+export function quickSort(arr, loIdx, hiIdx) {}
 
-export function quickSortI(arr) {
-}
+export function quickSortI(arr) {}

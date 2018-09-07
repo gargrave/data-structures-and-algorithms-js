@@ -86,47 +86,33 @@ Reimplement stack and queue data structures using linked lists.
 */
 
 class Node {
-  constructor(value, next = null) {
-  }
+  constructor(value, next = null) {}
 }
 
 export default class LinkedList {
-  constructor(headValue) {
-  }
+  constructor(headValue) {}
 
-  get headNode() {
-  }
+  get headNode() {}
 
-  get head() {
-  }
+  get head() {}
 
-  get tail() {
-  }
+  get tail() {}
 
-  get count() {
-  }
+  get count() {}
 
-  findNode(value) {
-  }
+  findNode(value) {}
 
-  append(value) {
-  }
+  append(value) {}
 
-  insertHead(value) {
-  }
+  insertHead(value) {}
 
-  insertAfter(refNode, value) {
-  }
+  insertAfter(refNode, value) {}
 
-  removeHead() {
-  }
+  removeHead() {}
 
-  removeAfter(refNode) {
-  }
+  removeAfter(refNode) {}
 
-  forEach(cb) {
-  }
+  forEach(cb) {}
 
-  print() {
-  }
+  print() {}
 }

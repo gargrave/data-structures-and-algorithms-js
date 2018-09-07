@@ -49,12 +49,11 @@ and bubble sort) - when the data is nearly sorted (since it's adaptive)
 or when the problem size is small (because it has low memory overhead)
 */
 function swap(arr, idxA, idxB) {
-  const temp = arr[idxA];
-  arr[idxA] = arr[idxB];
-  arr[idxB] = temp;
+  const temp = arr[idxA]
+  arr[idxA] = arr[idxB]
+  arr[idxB] = temp
 }
 
-function bubbleSort(arr) {
-}
+function bubbleSort(arr) {}
 
-export default bubbleSort;
+export default bubbleSort

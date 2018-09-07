@@ -10,5 +10,8 @@
 // you will almost certainly need to transform the maze into your own
 // data structure to keep track of all the meta data
 
-export default function findShortestPathLength(maze, [startX, startY], [endX, endY]) {
-}
+export default function findShortestPathLength(
+  maze,
+  [startX, startY],
+  [endX, endY],
+) {}

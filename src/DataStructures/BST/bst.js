@@ -60,50 +60,35 @@ isBalanced()
 */
 
 export default class BinarySearchTree {
-  constructor(value) {
-  }
+  constructor(value) {}
 
-  insert(value) {
-  }
+  insert(value) {}
 
-  _insertLeft(value) {
-  }
+  _insertLeft(value) {}
 
-  _insertRight(value) {
-  }
+  _insertRight(value) {}
 
-  _childCount() {
-  }
+  _childCount() {}
 
-  _leftChildIs(val) {
-  }
+  _leftChildIs(val) {}
 
-  contains(value) {
-  }
+  contains(value) {}
 
-  findMin() {
-  }
+  findMin() {}
 
-  findMax() {
-  }
+  findMax() {}
 
-  findDepth(depth = 1) {
-  }
+  findDepth(depth = 1) {}
 
-  isFull() {
-  }
+  isFull() {}
 
-  isBalanced() {
-  }
+  isBalanced() {}
 
-  traverseDepthFirstInOrder(callback) {
-  }
+  traverseDepthFirstInOrder(callback) {}
 
-  traverseDepthFirstPreOrder(callback) {
-  }
+  traverseDepthFirstPreOrder(callback) {}
 
-  traverseDepthFirstPostOrder(callback) {
-  }
+  traverseDepthFirstPostOrder(callback) {}
 
   /*
   BST node removal:
@@ -114,6 +99,5 @@ export default class BinarySearchTree {
       2. Copy the *value* of this node into the node being deleted.
       3. The successor node can now be easily deleted, because it will only have 0 or 1 children.
    */
-  remove(value, parent = null) {
-  }
+  remove(value, parent = null) {}
 }

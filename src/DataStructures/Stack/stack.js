@@ -79,27 +79,19 @@ from tower#1 to tower#3 in such a way that none of the constraints are violated.
 */
 
 export default class Stack {
-  constructor(capacity) {
-  }
+  constructor(capacity) {}
 
-  push(value) {
-  }
+  push(value) {}
 
-  pop() {
-  }
+  pop() {}
 
-  peek() {
-  }
+  peek() {}
 
-  count() {
-  }
+  count() {}
 
-  contains(val) {
-  }
+  contains(val) {}
 
-  until(val) {
-  }
+  until(val) {}
 
-  min() {
-  }
+  min() {}
 }

@@ -69,13 +69,10 @@ merge sort is great because it's simple to implement,
 // @ 10000 elements: 10.023ms
 // @ 50000 elements: 31.725ms
 
-function merge(a, b) {
-}
+function merge(a, b) {}
 
 // a.k.a. "top down" merge sort
-export function mergeSortRecursive(arr) {
-}
+export function mergeSortRecursive(arr) {}
 
 // a.k.a. "bottom up" merge sort
-export function mergeSortIterative(arr) {
-}
+export function mergeSortIterative(arr) {}

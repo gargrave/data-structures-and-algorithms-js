@@ -5,16 +5,13 @@ Create a function called heapSort that accepts an array and performs a heap sort
 You will probably need at least two more functions: heapify and createMaxHeap
 */
 function swap(arr, idxA, idxB) {
-  const temp = arr[idxA];
-  arr[idxA] = arr[idxB];
-  arr[idxB] = temp;
+  const temp = arr[idxA]
+  arr[idxA] = arr[idxB]
+  arr[idxB] = temp
 }
 
-function heapify(arr, idx, heapSize) {
-}
+function heapify(arr, idx, heapSize) {}
 
-function createMaxHeap(arr) {
-}
+function createMaxHeap(arr) {}
 
-export default function heapSort(arr) {
-}
+export default function heapSort(arr) {}

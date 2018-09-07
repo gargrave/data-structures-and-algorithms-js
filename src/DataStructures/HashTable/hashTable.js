@@ -66,36 +66,28 @@ Resize the hash table:
 // Simple hashing function to use in your implementation
 // source: http://pmav.eu/stuff/javascript-hashing-functions/source.html
 function simpleHash(key, tableSize) {
-  const len = key.length;
-  let h = 0;
+  const len = key.length
+  let h = 0
   for (let i = 0; i < len; i += 1) {
-    h += key.charCodeAt(i) * (i + 1);
+    h += key.charCodeAt(i) * (i + 1)
   }
-  return h % tableSize;
+  return h % tableSize
 }
 
 export default class HashTable {
-  constructor(size) {
-  }
+  constructor(size) {}
 
-  find(key) {
-  }
+  find(key) {}
 
-  set(key, value) {
-  }
+  set(key, value) {}
 
-  get(key) {
-  }
+  get(key) {}
 
-  has(key) {
-  }
+  has(key) {}
 
-  getCount() {
-  }
+  getCount() {}
 
-  forEach(callback) {
-  }
+  forEach(callback) {}
 
-  resize(mult) {
-  }
+  resize(mult) {}
 }

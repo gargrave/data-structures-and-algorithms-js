@@ -64,24 +64,17 @@ certain value:
 */
 
 export default class Queue {
-  constructor(capacity) {
-  }
+  constructor(capacity) {}
 
-  enqueue(value) {
-  }
+  enqueue(value) {}
 
-  dequeue() {
-  }
+  dequeue() {}
 
-  peek() {
-  }
+  peek() {}
 
-  count() {
-  }
+  count() {}
 
-  contains(val) {
-  }
+  contains(val) {}
 
-  until(val) {
-  }
+  until(val) {}
 }

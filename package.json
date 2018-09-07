@@ -49,7 +49,7 @@
   },
   "scripts": {
     "test": "node scripts/test.js --env=jsdom",
-    "prettier": "prettier --config ./.prettierrc --write './{config|public|scripts|src}/**/*.js'"
+    "prettier": "prettier --config ./.prettierrc --write './{config,public,scripts,src}/**/*.js'"
   },
   "jest": {
     "collectCoverageFrom": [

@@ -59,21 +59,20 @@ Use cases:
 // @ 50000 elements: 3537.528ms
 
 function swap(arr, idxA, idxB) {
-  const temp = arr[idxA];
-  arr[idxA] = arr[idxB];
-  arr[idxB] = temp;
+  const temp = arr[idxA]
+  arr[idxA] = arr[idxB]
+  arr[idxB] = temp
 }
 
 function defaultCompartor(a, b) {
   if (a > b) {
-    return -1;
+    return -1
   } else if (a < b) {
-    return 1;
+    return 1
   }
-  return 0;
+  return 0
 }
 
-function insertionSort(arr, comparator) {
-}
+function insertionSort(arr, comparator) {}
 
-export default insertionSort;
+export default insertionSort
