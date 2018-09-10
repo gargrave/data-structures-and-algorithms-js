@@ -167,7 +167,8 @@ describe('LinkedList', () => {
     it('should return a string with all values', () => {
       const ll = buildList(3)
       const str = ll.print()
-      ;['a', 'b', 'c'].forEach(char => expect(str.includes(char)).toBe(true))
+      const arr = ['a', 'b', 'c']
+      arr.forEach(char => expect(str.includes(char)).toBe(true))
       expect(str.includes('d')).toBe(false)
     })
   })
